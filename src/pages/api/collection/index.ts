@@ -37,6 +37,7 @@ export default async function handler(
                 });
             } catch (e) {
                 handleDbError(e, res);
+                return;
             }
             res.status(200).json(result);
             break;
