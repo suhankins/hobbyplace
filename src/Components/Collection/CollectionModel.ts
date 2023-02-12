@@ -1,5 +1,6 @@
 import { prop, getModelForClass, PropType } from '@typegoose/typegoose';
 import '../../lib/mongodb';
+import { validateArrayLength } from '../shared/validateArrayLength';
 
 export class CollectionClass {
     @prop({ required: true })
@@ -20,7 +21,14 @@ export class CollectionClass {
     @prop({ default: () => Date.now() })
     public updated?: number;
 
-    @prop({ type: () => [String], required: true }, PropType.ARRAY)
+    @prop(
+        {
+            type: () => [String],
+            required: true,
+            validate: [validateArrayLength(1, 3)],
+        },
+        PropType.ARRAY
+    )
     public fields!: string[];
 }
 

@@ -5,6 +5,7 @@ import {
     mongoose,
 } from '@typegoose/typegoose';
 import '../../lib/mongodb';
+import { validateArrayLength } from '../shared/validateArrayLength';
 
 export class ItemClass {
     @prop({ required: true })
@@ -23,7 +24,11 @@ export class ItemClass {
     public tags?: string[];
 
     @prop(
-        { type: () => [{ field: String, value: mongoose.Schema.Types.Mixed }] },
+        {
+            type: () => [{ field: String, value: mongoose.Schema.Types.Mixed }],
+            required: true,
+            validate: [validateArrayLength(1, 3)],
+        },
         PropType.ARRAY
     )
     public fields!: [{ field: string; value: any }];
