@@ -3,6 +3,8 @@ import '../../lib/mongodb';
 import { validateArrayLength } from '@/Components/shared/validateArrayLength';
 
 export class CollectionClass {
+    static FIELDS = 6;
+
     @prop({ required: true })
     public name!: string;
 
@@ -25,7 +27,7 @@ export class CollectionClass {
         {
             type: () => [String],
             required: true,
-            validate: [validateArrayLength(1, 3)],
+            validate: [validateArrayLength(1, CollectionClass.FIELDS)],
         },
         PropType.ARRAY
     )
