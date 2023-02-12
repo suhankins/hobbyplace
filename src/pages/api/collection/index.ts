@@ -27,19 +27,17 @@ export default async function handler(
                 return;
             }
 
-            let result;
             try {
-                result = await CollectionModel.create({
+                const result = await CollectionModel.create({
                     name: query.name as string,
                     description: query.description as string,
                     category: query.category as string,
                     fields: query.fields as string[],
                 });
+                res.status(200).json(result);
             } catch (e) {
                 handleDbError(e, res);
-                return;
             }
-            res.status(200).json(result);
             break;
         default:
             res.setHeader('Allow', ['GET', 'POST']);
