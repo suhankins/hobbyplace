@@ -1,6 +1,6 @@
 import { prop, getModelForClass, PropType } from '@typegoose/typegoose';
 import '../../lib/mongodb';
-import { validateArrayLength } from '../shared/validateArrayLength';
+import { validateArrayLength } from '@/Components/shared/validateArrayLength';
 
 export class CollectionClass {
     @prop({ required: true })
