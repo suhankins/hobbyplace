@@ -2,12 +2,16 @@ import {
     prop,
     getModelForClass,
     PropType,
-    mongoose,
+    Severity,
 } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
-import { CollectionClass } from '../Collection/CollectionModel';
+import {
+    CollectionClass,
+    CollectionModel,
+} from '../Collection/CollectionModel';
 import { validateArrayLength } from '../shared/validateArrayLength';
+import { ItemField } from '../Fields/ItemField';
 
 export class ItemClass {
     @prop({ required: true })
@@ -25,18 +29,36 @@ export class ItemClass {
     @prop({ type: () => [String], default: () => [] }, PropType.ARRAY)
     public tags?: string[];
 
+    @prop({ ref: () => CollectionClass, required: true })
+    public belongsTo!: Ref<CollectionClass>;
+
     @prop(
         {
-            type: () => [{ field: String, value: mongoose.Schema.Types.Mixed }],
+            type: () => [ItemField],
+            _id: false,
             required: true,
-            validate: [validateArrayLength(1, 3)],
         },
         PropType.ARRAY
     )
-    public fields!: [{ field: string; value: any }];
+    // Fields require a lot of validation that can only be done after belongsTo is resolved
+    public fields!: ItemField[];
 
-    @prop({ ref: () => CollectionClass, required: true })
-    public belongsTo!: Ref<CollectionClass>;
+    static async ValidateFields(
+        belongsTo: Ref<CollectionClass>,
+        fields: ItemField[]
+    ): Promise<boolean> {
+        const collection = await CollectionModel.findById(belongsTo);
+        if (
+            collection !== null &&
+            collection !== undefined &&
+            collection.fields.length === fields.length
+        ) {
+            return collection.fields.every(
+                (value, index) => fields[index].type === value
+            );
+        }
+        return false;
+    }
 }
 
 export const ItemModel = getModelForClass(ItemClass);
