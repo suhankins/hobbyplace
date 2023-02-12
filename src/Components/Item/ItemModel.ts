@@ -4,7 +4,9 @@ import {
     PropType,
     mongoose,
 } from '@typegoose/typegoose';
+import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
+import { CollectionClass } from '../Collection/CollectionModel';
 import { validateArrayLength } from '../shared/validateArrayLength';
 
 export class ItemClass {
@@ -33,8 +35,8 @@ export class ItemClass {
     )
     public fields!: [{ field: string; value: any }];
 
-    @prop({ required: true })
-    public belongsTo!: mongoose.Types.ObjectId;
+    @prop({ ref: () => CollectionClass, required: true })
+    public belongsTo!: Ref<CollectionClass>;
 }
 
 export const ItemModel = getModelForClass(ItemClass);
