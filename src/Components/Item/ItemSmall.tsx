@@ -1,5 +1,5 @@
 import { Card, Typography } from '@mui/joy';
-import { ItemClass } from './ItemModel';
+import { ItemClass } from './Item';
 
 export function ItemSmall(props: { item: ItemClass }) {
     return (

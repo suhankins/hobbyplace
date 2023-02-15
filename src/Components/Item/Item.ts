@@ -1,17 +1,9 @@
-import {
-    prop,
-    getModelForClass,
-    PropType,
-    Severity,
-} from '@typegoose/typegoose';
+import { prop, PropType } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
-import {
-    CollectionClass,
-    CollectionModel,
-} from '../Collection/CollectionModel';
-import { validateArrayLength } from '../shared/validateArrayLength';
+import { CollectionClass } from '../Collection/Collection';
 import { ItemField } from '../Fields/ItemField';
+import { CollectionModel } from '../shared/Models';
 
 export class ItemClass {
     @prop({ required: true })
@@ -60,5 +52,3 @@ export class ItemClass {
         return false;
     }
 }
-
-export const ItemModel = getModelForClass(ItemClass);

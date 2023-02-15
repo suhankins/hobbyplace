@@ -1,9 +1,10 @@
 import { ItemField } from '@/Components/Fields/ItemField';
 import { handleDbError } from '@/Components/shared/handleDbError';
+import { ItemModel } from '@/Components/shared/Models';
 import { parseJson } from '@/Components/shared/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ItemClass, ItemModel } from '../../../Components/Item/ItemModel';
+import { ItemClass } from '../../../Components/Item/Item';
 
 export default async function handler(
     req: NextApiRequest,

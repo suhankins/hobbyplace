@@ -1,8 +1,6 @@
-import {
-    CollectionClass,
-    CollectionModel,
-} from '@/Components/Collection/CollectionModel';
+import { CollectionClass } from '@/Components/Collection/Collection';
 import { handleDbError } from '@/Components/shared/handleDbError';
+import { CollectionModel } from '@/Components/shared/Models';
 import { parseJson } from '@/Components/shared/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -14,11 +12,6 @@ export default async function handler(
     const { method } = req;
 
     switch (method) {
-        case 'GET':
-            res.status(StatusCodes.OK).send(
-                JSON.stringify(await CollectionModel.find())
-            );
-            break;
         case 'POST':
             // Create collection in DB
             let query: CollectionClass | string = parseJson(req.body);
@@ -40,7 +33,7 @@ export default async function handler(
             }
             break;
         default:
-            res.setHeader('Allow', ['GET', 'POST']);
+            res.setHeader('Allow', ['POST']);
             res.status(405).end(`Method ${method} Not Allowed`);
     }
 }

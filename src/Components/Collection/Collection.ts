@@ -1,7 +1,15 @@
-import { prop, getModelForClass, PropType } from '@typegoose/typegoose';
+import { modelOptions, prop, PropType } from '@typegoose/typegoose';
+import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { validateArrayLength } from '@/Components/shared/validateArrayLength';
+import { ItemClass } from '../Item/Item';
 
+@modelOptions({
+    schemaOptions: {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true },
+    },
+})
 export class CollectionClass {
     static FIELDS = 6;
 
@@ -32,6 +40,11 @@ export class CollectionClass {
         PropType.ARRAY
     )
     public fields!: string[];
-}
 
-export const CollectionModel = getModelForClass(CollectionClass);
+    @prop({
+        ref: () => ItemClass,
+        foreignField: 'belongsTo',
+        localField: '_id',
+    })
+    public items?: Ref<ItemClass>[];
+}
