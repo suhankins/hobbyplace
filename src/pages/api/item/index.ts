@@ -4,7 +4,7 @@ import { ItemModel } from '@/Components/shared/Models';
 import { parseJson } from '@/Components/shared/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ItemClass } from '../../../Components/Item/Item';
+import { ItemClass } from '@/Components/Item/Item';
 
 export default async function handler(
     req: NextApiRequest,
