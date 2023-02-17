@@ -13,7 +13,7 @@ export default async function handler(
 
     switch (method) {
         case 'GET':
-            res.status(StatusCodes.OK).send(
+            res.status(StatusCodes.OK).json(
                 JSON.stringify(await CollectionController.getAll())
             );
             break;

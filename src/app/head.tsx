@@ -1,5 +1,3 @@
-import '@fontsource/public-sans';
-
 export default function Head() {
     return (
         <>
