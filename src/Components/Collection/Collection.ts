@@ -1,7 +1,7 @@
 import { modelOptions, prop, PropType } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
-import { validateArrayLength } from '@/Components/shared/validateArrayLength';
+import { validateArrayLength } from '@/lib/validateArrayLength';
 import { ItemClass } from '../Item/Item';
 
 @modelOptions({

@@ -1,7 +1,7 @@
 import { CollectionClass } from '@/Components/Collection/Collection';
-import { handleDbError } from '@/Components/shared/handleDbError';
+import { handleDbError } from '@/lib/handleDbError';
 import { CollectionModel } from '@/Components/shared/Models';
-import { parseJson } from '@/Components/shared/parseJson';
+import { parseJson } from '@/lib/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
