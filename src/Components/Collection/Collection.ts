@@ -47,4 +47,8 @@ export class CollectionClass {
         localField: '_id',
     })
     public items?: Ref<ItemClass>[];
+
+    public get itemCount() {
+        return this.items?.length;
+    }
 }

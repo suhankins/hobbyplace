@@ -11,7 +11,7 @@ type getAllParameters = {
 
 const sorts = {
     date: (a: any, b: any) => a.updated - b.updated,
-    items: (a: any, b: any) => a.items.length - b.items.length,
+    items: (a: any, b: any) => a.itemCount - b.itemCount,
 };
 
 export const CollectionController = {
