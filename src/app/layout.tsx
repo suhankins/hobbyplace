@@ -11,22 +11,24 @@ export default function RootLayout({
             <head />
             <body>
                 <div className="navbar bg-base-300 sticky top-0 z-40 shadow-lg">
-                    <div>
-                        <div className="drawer-content flex flex-col items-center justify-center">
-                            <label
-                                htmlFor="left-side-drawer"
-                                className="btn drawer-button lg:hidden">
-                                <Burger />
-                            </label>
+                    <div className="w-full max-w-screen-2xl mx-auto">
+                        <div>
+                            <div className="drawer-content flex flex-col items-center justify-center">
+                                <label
+                                    htmlFor="left-side-drawer"
+                                    className="btn drawer-button lg:hidden">
+                                    <Burger />
+                                </label>
+                            </div>
+                        </div>
+                        <div className="flex-1">
+                            <a className="btn btn-ghost normal-case text-xl">
+                                Hobbyplace
+                            </a>
                         </div>
                     </div>
-                    <div className="flex-1">
-                        <a className="btn btn-ghost normal-case text-xl">
-                            Hobbyplace
-                        </a>
-                    </div>
                 </div>
-                <div className="max-w-8xl mx-auto">
+                <div className="max-w-screen-2xl mx-auto">
                     <div className="drawer drawer-mobile fixed lg:w-min z-30">
                         <input
                             id="left-side-drawer"
