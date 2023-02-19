@@ -9,7 +9,7 @@ export function ItemSmall({ item }: { item: ItemClass }) {
                     <div className="badge badge-outline">TODO: Add tags</div>
                 </div>
             </div>
-            <figure className="h-48">
+            <figure className="h-40">
                 <img
                     src={item.image ?? './NOIMAGE.png'}
                     alt={`${item.name} preview image`}

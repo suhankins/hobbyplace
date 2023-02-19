@@ -8,7 +8,7 @@ export function CollectionLong({
     collection: CollectionClass;
 }) {
     return (
-        <article className="w-full bg-base-300 rounded-xl shadow-xl overflow-hidden flex flex-row gap-4">
+        <article className="w-full bg-base-300 rounded-xl shadow-xl overflow-hidden flex flex-row gap-4 items-center">
             <div className="card card-compact bg-neutral w-48 rounded-none">
                 <div className="card-body">
                     <a href="#" className="card-title hover:underline">
@@ -43,9 +43,11 @@ export function CollectionLong({
                     />
                 </figure>
             </div>
-            {collection.items?.map((item, index) => {
-                return <ItemSmall key={index} item={item as ItemClass} />;
-            })}
+            <div className="flex flex-row gap-4 items-center py-4 overflow-y-auto">
+                {collection.items?.map((item, index) => {
+                    return <ItemSmall key={index} item={item as ItemClass} />;
+                })}
+            </div>
         </article>
     );
 }
