@@ -1,4 +1,4 @@
-import { Burger } from '@/Components/Icons';
+import { Burger } from '@/Components/shared/Icons';
 import './globals.css';
 
 export default function RootLayout({
