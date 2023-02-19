@@ -13,7 +13,8 @@
         "mongoose": "^6.9.0",
         "next": "13.1.6",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-input-suggestions": "^2.3.4"
     },
     "devDependencies": {
         "@typegoose/typegoose": "^10.1.1",
