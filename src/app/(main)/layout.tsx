@@ -1,4 +1,5 @@
 import { Burger } from '@/Components/shared/Icons';
+import Link from 'next/link';
 
 export default function mainLayout({
     children,
@@ -19,9 +20,9 @@ export default function mainLayout({
                         </div>
                     </div>
                     <div className="flex-1">
-                        <a className="btn btn-ghost normal-case text-xl">
+                        <Link href="/" className="btn btn-ghost normal-case text-xl">
                             Hobbyplace
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -38,10 +39,10 @@ export default function mainLayout({
                             className="drawer-overlay"></label>
                         <ul className="menu p-4 w-72 lg:w-64 h-full bg-base-200 text-base-content">
                             <li>
-                                <a>Login</a>
+                                <Link href="/login">Login</Link>
                             </li>
                             <li>
-                                <a>Register</a>
+                                <Link href="/register">Register</Link>
                             </li>
                         </ul>
                     </div>
