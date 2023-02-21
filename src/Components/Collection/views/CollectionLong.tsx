@@ -1,5 +1,6 @@
 import { ItemClass } from '@/Components/Item/Item';
 import { ItemSmall } from '@/Components/Item/views/ItemSmall';
+import Link from 'next/link';
 import { CollectionClass } from '../Collection';
 
 export function CollectionLong({
@@ -11,16 +12,16 @@ export function CollectionLong({
         <article className="w-full bg-base-300 rounded-xl shadow-xl overflow-hidden flex flex-row gap-4 items-center">
             <div className="card card-compact bg-neutral w-48 rounded-none">
                 <div className="card-body">
-                    <a href="#" className="card-title hover:underline">
+                    <Link href={`/collection/${collection._id}`} className="card-title hover:underline">
                         {collection.name}
-                    </a>
+                    </Link>
                     <div>
                         Category:{' '}
-                        <a
-                            href="#"
+                        <Link
+                            href={`/category/${encodeURI(collection.category)}`}
                             className="text-accent focus:text-accent-focus hover:underline">
                             {collection.category}
-                        </a>
+                        </Link>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
                         {/* TODO: Add owner of the collection */}
@@ -29,16 +30,16 @@ export function CollectionLong({
                                 <img src="/NOIMAGE.png" />
                             </div>
                         </div>
-                        <a
-                            href="#"
+                        <Link
+                            href="#" // TODO: link to owner
                             className="text-accent focus:text-accent-focus hover:underline">
                             someone
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <figure className="h-48">
                     <img
-                        src={collection.image ?? './NOIMAGE.png'}
+                        src={collection.image ?? '/NOIMAGE.png'}
                         alt={`${collection.name} preview image`}
                     />
                 </figure>
