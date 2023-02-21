@@ -1,4 +1,4 @@
-import { modelOptions, prop, PropType } from '@typegoose/typegoose';
+import { modelOptions, prop, PropType, defaultClasses } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { validateArrayLength } from '@/lib/validateArrayLength';
@@ -10,8 +10,14 @@ import { ItemClass } from '../Item/Item';
         toObject: { virtuals: true },
     },
 })
-export class CollectionClass {
+export class CollectionClass implements defaultClasses.Base<string> {
     static FIELDS = 6;
+
+    @prop()
+    public _id!: string;
+
+    @prop()
+    public id!: string;
 
     @prop({ required: true })
     public name!: string;
