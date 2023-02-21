@@ -18,7 +18,7 @@ export function CollectionLong({
                     <div>
                         Category:{' '}
                         <Link
-                            href={`/category/${encodeURI(collection.category)}`}
+                            href={`/category/${encodeURIComponent(collection.category)}`}
                             className="text-accent focus:text-accent-focus hover:underline">
                             {collection.category}
                         </Link>
