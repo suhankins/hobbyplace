@@ -25,7 +25,7 @@ export class CollectionClass implements defaultClasses.Base<string> {
     @prop({ required: true })
     public description!: string;
 
-    @prop({ default: () => '/NOIMAGE.png' })
+    @prop({ default: () => null })
     public image?: string;
 
     @prop({ required: true })
