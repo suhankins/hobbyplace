@@ -37,7 +37,7 @@ export default function mainLayout({
                             htmlFor="left-side-drawer"
                             className="drawer-overlay"></label>
                         <ul className="menu p-4 w-80 lg:w-64 h-full bg-base-200 text-base-content">
-                            <li>
+                            <li className="hidden lg:block">
                                 <Link
                                     href="/"
                                     className="btn btn-ghost normal-case text-xl">
