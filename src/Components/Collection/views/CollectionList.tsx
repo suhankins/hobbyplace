@@ -7,11 +7,9 @@ export function CollectionList({
     collections: CollectionClass[];
 }) {
     return (
-        <div className="flex gap-4 flex-col">
+        <div className="flex gap-8 sm:gap-4 flex-col">
             {collections.map((collection, index) => {
-                return (
-                    <CollectionLong key={index} collection={collection} />
-                );
+                return <CollectionLong key={index} collection={collection} />;
             })}
         </div>
     );
