@@ -1,3 +1,4 @@
+import { Searchbar } from '@/Components/Searchbar/Searchbar';
 import { Burger } from '@/Components/shared/Icons';
 import Link from 'next/link';
 
@@ -29,6 +30,7 @@ export default function mainLayout({
                                     Hobbyplace
                                 </Link>
                             </div>
+                            <Searchbar className="hidden lg:inline-flex" />
                         </div>
                         <div className="p-4">{children}</div>
                     </div>
@@ -37,6 +39,9 @@ export default function mainLayout({
                             htmlFor="left-side-drawer"
                             className="drawer-overlay"></label>
                         <ul className="menu p-4 w-80 lg:w-64 h-full bg-base-200 text-base-content">
+                            <li className="block lg:hidden">
+                                <Searchbar />
+                            </li>
                             <li className="hidden lg:block">
                                 <Link
                                     href="/"
