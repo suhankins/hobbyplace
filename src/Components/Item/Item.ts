@@ -1,13 +1,13 @@
-import { defaultClasses, prop, PropType } from '@typegoose/typegoose';
+import { defaultClasses, mongoose, prop, PropType } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
 import { ItemField } from '../Fields/ItemField';
 import { CollectionModel } from '../shared/Models';
 
-export class ItemClass implements defaultClasses.Base<string> {
+export class ItemClass implements defaultClasses.Base {
     @prop()
-    public _id!: string;
+    public _id!: mongoose.Types.ObjectId;
 
     @prop()
     public id!: string;
