@@ -8,36 +8,42 @@ export default function mainLayout({
 }) {
     return (
         <>
-            <div className="navbar bg-base-300 sticky top-0 z-40 shadow-lg">
-                <div className="w-full max-w-screen-2xl mx-auto">
-                    <div>
-                        <div className="drawer-content flex flex-col items-center justify-center">
-                            <label
-                                htmlFor="left-side-drawer"
-                                className="btn drawer-button lg:hidden">
-                                <Burger />
-                            </label>
-                        </div>
-                    </div>
-                    <div className="flex-1">
-                        <Link href="/" className="btn btn-ghost normal-case text-xl">
-                            Hobbyplace
-                        </Link>
-                    </div>
-                </div>
-            </div>
             <div className="max-w-screen-2xl mx-auto">
-                <div className="drawer drawer-mobile fixed lg:w-min z-30">
+                <div className="drawer drawer-mobile fixed z-30">
                     <input
                         id="left-side-drawer"
                         type="checkbox"
                         className="drawer-toggle"
                     />
+                    <div className="drawer-content">
+                        <div className="navbar bg-base-300 sticky top-0 z-40 shadow-lg">
+                            <label
+                                htmlFor="left-side-drawer"
+                                className="btn drawer-button lg:hidden">
+                                <Burger />
+                            </label>
+                            <div className="flex-1 lg:hidden">
+                                <Link
+                                    href="/"
+                                    className="btn btn-ghost normal-case text-xl">
+                                    Hobbyplace
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="p-4">{children}</div>
+                    </div>
                     <div className="drawer-side">
                         <label
                             htmlFor="left-side-drawer"
                             className="drawer-overlay"></label>
-                        <ul className="menu p-4 w-72 lg:w-64 h-full bg-base-200 text-base-content">
+                        <ul className="menu p-4 w-80 lg:w-64 h-full bg-base-200 text-base-content">
+                            <li>
+                                <Link
+                                    href="/"
+                                    className="btn btn-ghost normal-case text-xl">
+                                    Hobbyplace
+                                </Link>
+                            </li>
                             <li>
                                 <Link href="/login">Login</Link>
                             </li>
@@ -47,7 +53,6 @@ export default function mainLayout({
                         </ul>
                     </div>
                 </div>
-                <div className="p-4 lg:ml-64">{children}</div>
             </div>
         </>
     );
