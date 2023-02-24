@@ -10,7 +10,7 @@ export function CollectionLong({
 }) {
     return (
         <article className="w-full bg-base-300 rounded-xl shadow-xl overflow-hidden flex flex-col sm:flex-row sm:gap-4 items-center">
-            <div className="card card-compact bg-neutral w-full sm:w-48 rounded-none">
+            <div className="card card-compact bg-base-200 w-full sm:w-48 rounded-none">
                 <div className="card-body">
                     <Link
                         href={`/collection/${collection._id}`}

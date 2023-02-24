@@ -1,9 +1,10 @@
+import { ThemeSetUp } from '@/Components/ThemeSwitch/ThemeSetUp';
 import './globals.css';
 
-export const  metadata = {
-    title: "Hobbyplace",
-    description: "TODO: Description"
-}
+export const metadata = {
+    title: 'Hobbyplace',
+    description: 'TODO: Description',
+};
 
 export default function RootLayout({
     children,
@@ -13,9 +14,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head />
-            <body>
-                {children}
-            </body>
+            <ThemeSetUp />
+            <body>{children}</body>
         </html>
     );
 }

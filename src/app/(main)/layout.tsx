@@ -1,5 +1,6 @@
 import { Searchbar } from '@/Components/Searchbar/Searchbar';
 import { Burger } from '@/Components/shared/Icons';
+import { ThemeSwitch } from '@/Components/ThemeSwitch/ThemeSwitch';
 import Link from 'next/link';
 
 export default function mainLayout({
@@ -17,7 +18,7 @@ export default function mainLayout({
                         className="drawer-toggle"
                     />
                     <div className="drawer-content">
-                        <div className="navbar bg-base-300 sticky top-0 z-40 shadow-lg">
+                        <div className="navbar gap-4 px-4 bg-base-100 sticky top-0 z-40 shadow-lg">
                             <label
                                 htmlFor="left-side-drawer"
                                 className="btn drawer-button lg:hidden">
@@ -30,7 +31,8 @@ export default function mainLayout({
                                     Hobbyplace
                                 </Link>
                             </div>
-                            <Searchbar className="hidden lg:inline-flex" />
+                            <Searchbar className="hidden lg:inline-flex lg:flex-1" />
+                            <ThemeSwitch />
                         </div>
                         <div className="p-4">{children}</div>
                     </div>
