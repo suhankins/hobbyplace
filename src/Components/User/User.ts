@@ -24,6 +24,9 @@ export class UserClass implements defaultClasses.Base {
     @prop({ required: true, unique: true })
     public name!: string;
 
+    @prop({ required: true, unique: true })
+    public email!: string;
+
     @prop({ required: true })
     public passwordHash!: string;
 
