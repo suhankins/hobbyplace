@@ -2,6 +2,7 @@ import { Searchbar } from '@/Components/Searchbar/Searchbar';
 import { Burger } from '@/Components/shared/Icons';
 import { ThemeSwitch } from '@/Components/ThemeSwitch/ThemeSwitch';
 import Link from 'next/link';
+import { DrawerMenu } from './DrawerMenu';
 
 export default function mainLayout({
     children,
@@ -51,12 +52,7 @@ export default function mainLayout({
                                     Hobbyplace
                                 </Link>
                             </li>
-                            <li>
-                                <Link href="/login">Login</Link>
-                            </li>
-                            <li>
-                                <Link href="/register">Register</Link>
-                            </li>
+                            <DrawerMenu />
                         </ul>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import { ThemeSetUp } from '@/Components/ThemeSwitch/ThemeSetUp';
+import { CustomSessionProvider } from './SessionProvider';
 import './globals.css';
 
 export const metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
         <html lang="en">
             <head />
             <ThemeSetUp />
-            <body>{children}</body>
+            <body>
+                <CustomSessionProvider>{children}</CustomSessionProvider>
+            </body>
         </html>
     );
 }

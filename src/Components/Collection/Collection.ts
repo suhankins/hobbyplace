@@ -1,8 +1,15 @@
-import { modelOptions, prop, PropType, defaultClasses, mongoose } from '@typegoose/typegoose';
+import {
+    modelOptions,
+    prop,
+    PropType,
+    defaultClasses,
+    mongoose,
+} from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { validateArrayLength } from '@/lib/validateArrayLength';
 import { ItemClass } from '../Item/Item';
+import { UserClass } from '../User/User';
 
 @modelOptions({
     schemaOptions: {
@@ -36,6 +43,9 @@ export class CollectionClass implements defaultClasses.Base {
 
     @prop({ default: () => Date.now() })
     public updated?: number;
+
+    @prop({ ref: () => UserClass, required: true })
+    public owner!: Ref<UserClass>;
 
     @prop(
         {
