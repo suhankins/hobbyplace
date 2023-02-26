@@ -6,10 +6,8 @@ import { ItemField } from '../Fields/ItemField';
 import { CollectionModel } from '../shared/Models';
 
 export class ItemClass implements defaultClasses.Base {
-    @prop()
     public _id!: mongoose.Types.ObjectId;
 
-    @prop()
     public id!: string;
 
     @prop({ required: true })

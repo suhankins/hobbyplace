@@ -20,10 +20,8 @@ import { UserClass } from '../User/User';
 export class CollectionClass implements defaultClasses.Base {
     static FIELDS = 6;
 
-    @prop()
     public _id!: mongoose.Types.ObjectId;
 
-    @prop()
     public id!: string;
 
     @prop({ required: true })

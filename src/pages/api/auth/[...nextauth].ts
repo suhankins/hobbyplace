@@ -8,8 +8,8 @@ export const authOptions: NextAuthOptions = {
         CredentialsProvider({
             name: 'credentials',
             credentials: {
-                username: {
-                    label: 'Username',
+                name: {
+                    label: 'Name',
                     type: 'text',
                 },
                 password: {
@@ -19,17 +19,14 @@ export const authOptions: NextAuthOptions = {
                 },
             },
             async authorize(credentials, req) {
-                const username = credentials?.username;
+                const name = credentials?.name;
                 const password = credentials?.password;
 
-                if (
-                    typeof username !== 'string' ||
-                    typeof password !== 'string'
-                ) {
+                if (typeof name !== 'string' || typeof password !== 'string') {
                     return null;
                 }
 
-                const user = await UserModel.findOne({ username: username });
+                const user = await UserModel.findOne({ name: name });
 
                 if (user !== null && user !== undefined) {
                     if (await compare(password, user.passwordHash)) {
@@ -43,6 +40,9 @@ export const authOptions: NextAuthOptions = {
     ],
     session: {
         strategy: 'jwt',
+    },
+    pages: {
+        //signIn: "/auth/login"
     },
 };
 

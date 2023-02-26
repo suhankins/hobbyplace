@@ -10,7 +10,10 @@ export function DrawerMenu() {
         return (
             <>
                 <li>
-                    <button onClick={() => signIn()}>Sign in</button>
+                    <button onClick={() => signIn()}>Log in</button>
+                </li>
+                <li>
+                    <Link href={`/auth/register`}>Register</Link>
                 </li>
             </>
         );
@@ -23,7 +26,7 @@ export function DrawerMenu() {
                     </Link>
                 </li>
                 <li>
-                    <button onClick={() => signOut()}>Sign out</button>
+                    <button onClick={() => signOut()}>Log out</button>
                 </li>
             </>
         );

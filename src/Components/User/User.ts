@@ -7,6 +7,7 @@ import {
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
+import { EmailPattern } from '../shared/EmailPattern';
 
 @modelOptions({
     schemaOptions: {
@@ -15,16 +16,21 @@ import { CollectionClass } from '../Collection/Collection';
     },
 })
 export class UserClass implements defaultClasses.Base {
-    @prop()
     public _id!: mongoose.Types.ObjectId;
 
-    @prop()
     public id!: string;
 
     @prop({ required: true, unique: true })
     public name!: string;
 
-    @prop({ required: true, unique: true })
+    @prop({
+        required: true,
+        unique: true,
+        validate: {
+            validator: (v: string) => EmailPattern.test(v),
+            message: 'not a valid email!',
+        },
+    })
     public email!: string;
 
     @prop({ required: true })

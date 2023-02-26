@@ -19,7 +19,7 @@ export default async function handler(
             );
             break;
         case 'POST':
-            // Create collection in DB
+            // Create item in DB
             let query: ItemClass | string = parseJson(req.body);
             if (typeof query === 'string') {
                 res.status(StatusCodes.BAD_REQUEST).send(query);
