@@ -5,13 +5,7 @@ import { Dark, Light } from '../shared/Icons';
 import { UpdateTheme } from './UpdateTheme';
 
 export function ThemeSwitch() {
-    const [theme, setTheme] = useState('light');
-
-    if (typeof window !== 'undefined') {
-        useEffect(() => {
-            setTheme(localStorage.theme);
-        }, []);
-    }
+    const [theme, setTheme] = useState(localStorage.theme as 'light' | 'dark');
 
     useEffect(() => {
         localStorage.theme = theme;
