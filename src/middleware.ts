@@ -1,18 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-let locales = ['en-US', 'nl-NL', 'nl'];
+import { i18n } from './i18n-config';
 
 function getLocale(request: NextRequest) {
     const prefered = request.headers.get('language');
     if (prefered === undefined || prefered === null) {
-        return 'en-US';
+        return i18n.defaultLocale;
     }
     return prefered;
 }
 
 export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
-    const pathnameIsMissingLocale = locales.every(
+    const pathnameIsMissingLocale = i18n.locales.every(
         (locale) =>
             !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
     );
@@ -27,5 +28,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/((?!_next).*)'],
+    matcher: ['/((?!api|_next/static|NOIMAGE.png|_next/image|favicon.ico).*)'],
 };

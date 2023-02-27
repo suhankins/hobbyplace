@@ -1,0 +1,19 @@
+{
+    "drawer": {
+        "log_in": "Войти",
+        "log_out": "Выйти",
+        "register": "Регистрация"
+    },
+    "auth": {
+        "register_text": "Регистрация",
+        "log_in": "Войти",
+        "log_out": "Выйти",
+        "register": "Зарегистрироваться",
+        "name": "Имя",
+        "password": "Пароль",
+        "email": "Почта"
+    },
+    "collection": {
+        "category": "Категория"
+    }
+}

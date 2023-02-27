@@ -1,14 +1,20 @@
 import { Searchbar } from '@/Components/Searchbar/Searchbar';
 import { Burger } from '@/Components/shared/Icons';
 import { ThemeSwitch } from '@/Components/ThemeSwitch/ThemeSwitch';
+import { getDictionary } from '@/get-dictionary';
+import { Locale } from '@/i18n-config';
 import Link from 'next/link';
 import { DrawerMenu } from './DrawerMenu';
 
-export default function mainLayout({
+export default async function mainLayout({
     children,
+    params: { lang },
 }: {
     children: React.ReactNode;
+    params: { lang: string };
 }) {
+    const dictionary = await getDictionary(lang as Locale);
+
     return (
         <>
             <div className="max-w-screen-2xl mx-auto">
@@ -52,7 +58,7 @@ export default function mainLayout({
                                     Hobbyplace
                                 </Link>
                             </li>
-                            <DrawerMenu />
+                            <DrawerMenu dictionary={dictionary.drawer} />
                         </ul>
                     </div>
                 </div>

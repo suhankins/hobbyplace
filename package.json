@@ -17,7 +17,8 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-hook-form": "^7.43.2",
-        "react-input-suggestions": "^2.3.4"
+        "react-input-suggestions": "^2.3.4",
+        "server-only": "^0.0.1"
     },
     "devDependencies": {
         "@typegoose/typegoose": "^10.1.1",

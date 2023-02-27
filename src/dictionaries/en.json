@@ -1,0 +1,19 @@
+{
+    "drawer": {
+        "log_in": "Log in",
+        "log_out": "Log out",
+        "register": "Register"
+    },
+    "auth": {
+        "register_text": "Create a new account",
+        "log_in": "Sign in",
+        "log_out": "Sign out",
+        "register": "Sign up",
+        "name": "Name",
+        "password": "Password",
+        "email": "Email"
+    },
+    "collection": {
+        "category": "Category"
+    }
+}

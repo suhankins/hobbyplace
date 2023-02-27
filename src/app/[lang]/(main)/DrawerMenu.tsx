@@ -3,17 +3,27 @@
 import Link from 'next/link';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
-export function DrawerMenu() {
+export function DrawerMenu({
+    dictionary,
+}: {
+    dictionary: {
+        log_in: string;
+        log_out: string;
+        register: string;
+    };
+}) {
     const { data: session } = useSession();
 
     if (session === null || session === undefined) {
         return (
             <>
                 <li>
-                    <button onClick={() => signIn()}>Log in</button>
+                    <button onClick={() => signIn()}>
+                        {dictionary.log_in}
+                    </button>
                 </li>
                 <li>
-                    <Link href={`/auth/register`}>Register</Link>
+                    <Link href={`/auth/register`}>{dictionary.register}</Link>
                 </li>
             </>
         );
@@ -26,7 +36,9 @@ export function DrawerMenu() {
                     </Link>
                 </li>
                 <li>
-                    <button onClick={() => signOut()}>Log out</button>
+                    <button onClick={() => signOut()}>
+                        {dictionary.log_out}
+                    </button>
                 </li>
             </>
         );

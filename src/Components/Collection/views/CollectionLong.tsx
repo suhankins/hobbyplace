@@ -5,8 +5,12 @@ import { CollectionClass } from '../Collection';
 
 export function CollectionLong({
     collection,
+    dictionary
 }: {
     collection: CollectionClass;
+    dictionary: {
+        category: string;
+    };
 }) {
     return (
         <article className="w-full bg-base-300 rounded-xl shadow-xl overflow-hidden flex flex-col sm:flex-row sm:gap-4 items-center">
@@ -18,7 +22,7 @@ export function CollectionLong({
                         {collection.name}
                     </Link>
                     <div>
-                        Category:{' '}
+                        {dictionary.category}:{' '}
                         <Link
                             href={`/category/${encodeURIComponent(
                                 collection.category
