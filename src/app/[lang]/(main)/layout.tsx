@@ -1,3 +1,4 @@
+import { LanguageSwitch } from '@/Components/LanguageSwitch/LanguageSwitch';
 import { Searchbar } from '@/Components/Searchbar/Searchbar';
 import { Burger } from '@/Components/shared/Icons';
 import { ThemeSwitch } from '@/Components/ThemeSwitch/ThemeSwitch';
@@ -11,7 +12,7 @@ export default async function mainLayout({
     params: { lang },
 }: {
     children: React.ReactNode;
-    params: { lang: string };
+    params: { lang: Locale };
 }) {
     const dictionary = await getDictionary(lang as Locale);
 
@@ -39,6 +40,7 @@ export default async function mainLayout({
                                 </Link>
                             </div>
                             <Searchbar className="hidden lg:inline-flex lg:flex-1" />
+                            <LanguageSwitch currentLocale={lang} />
                             <ThemeSwitch />
                         </div>
                         <div className="p-4">{children}</div>
