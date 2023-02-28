@@ -1,14 +1,14 @@
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "@/i18n-config";
-import { RegisterForm } from "./form";
+import { getDictionary } from '@/get-dictionary';
+import { i18n, Locale } from '@/i18n-config';
+import { RegisterForm } from './form';
 
 export default async function App({
     params: { lang },
 }: {
-    params: { lang: string };
+    params: { lang: Locale };
 }) {
-    const dictionary = await getDictionary(lang as Locale);
-    
+    const dictionary = await getDictionary(lang);
+
     return (
         <div className="card w-96 bg-base-200">
             <div className="card-body">
@@ -17,4 +17,10 @@ export default async function App({
             </div>
         </div>
     );
+}
+
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => {
+        return { lang: locale };
+    });
 }
