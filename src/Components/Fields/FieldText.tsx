@@ -1,13 +1,13 @@
 import { Field } from './Field';
 
-export class FieldText extends Field {
-    public input(): JSX.Element {
-        return <input></input>;
-    }
-    public output(value: string): JSX.Element {
+export const FieldText: Field = {
+    input() {
+        return <input className="input" type="text" placeholder="..." />;
+    },
+    output(value: string) {
         return <span>{value}</span>;
-    }
-    public value(rawValue: any) {
+    },
+    value(rawValue: any) {
         return String(rawValue);
-    }
-}
+    },
+};

@@ -1,5 +1,5 @@
-export abstract class Field {
-    public abstract input(): JSX.Element;
-    public abstract output(value: any): JSX.Element;
-    public abstract value(rawValue: any): any;
+export interface Field {
+    input(): JSX.Element;
+    output(value: any): JSX.Element;
+    value(rawValue: any): any;
 }
