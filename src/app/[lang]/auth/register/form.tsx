@@ -1,6 +1,7 @@
 'use client';
 
 import { EmailPattern } from '@/Components/shared/EmailPattern';
+import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type Inputs = {
@@ -21,6 +22,8 @@ export function RegisterForm({
         email: string;
     };
 }) {
+    const router = useRouter();
+
     const {
         register,
         handleSubmit,
@@ -32,7 +35,7 @@ export function RegisterForm({
         fetch('/api/user/register', {
             method: 'POST',
             body: JSON.stringify(data),
-        }).then((value) => console.log(value));
+        }).then(() => router.push("/"));
     };
 
     return (
