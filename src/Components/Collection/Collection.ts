@@ -11,7 +11,7 @@ import { validateArrayLength } from '@/lib/validateArrayLength';
 import { ItemClass } from '../Item/Item';
 import { UserClass } from '../User/User';
 import type { Category } from '../Categories';
-import { FieldType } from '../Fields/FieldType';
+import { CollectionField } from '../Fields/CollectionField';
 
 @modelOptions({
     schemaOptions: {
@@ -49,13 +49,13 @@ export class CollectionClass implements defaultClasses.Base {
 
     @prop(
         {
-            type: () => [FieldType],
+            type: () => [CollectionField],
             required: true,
             validate: [validateArrayLength(1, CollectionClass.FIELDS)],
         },
         PropType.ARRAY
     )
-    public fields!: FieldType[];
+    public fields!: CollectionField[];
 
     @prop({
         ref: () => ItemClass,

@@ -1,6 +1,6 @@
-import { Field } from './Field';
+import { FieldDefinition } from './FieldDefinition';
 
-export const FieldText: Field = {
+export const FieldText: FieldDefinition = {
     input() {
         return <input className="input" type="text" placeholder="..." />;
     },

@@ -1,6 +1,6 @@
 import { defaultClasses, mongoose, prop } from "@typegoose/typegoose";
 
-export class FieldType implements defaultClasses.Base {
+export class CollectionField implements defaultClasses.Base {
     public _id!: mongoose.Types.ObjectId;
     public id!: string;
 

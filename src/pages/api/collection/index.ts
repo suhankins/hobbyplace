@@ -4,7 +4,7 @@ import { CollectionModel } from '@/Components/shared/Models';
 import { parseJson } from '@/lib/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { FieldType } from '@/Components/Fields/FieldType';
+import { CollectionField } from '@/Components/Fields/CollectionField';
 
 export default async function handler(
     req: NextApiRequest,
@@ -26,7 +26,7 @@ export default async function handler(
                     name: query.name as string,
                     description: query.description as string,
                     category: query.category as string,
-                    fields: query.fields as FieldType[],
+                    fields: query.fields as CollectionField[],
                 });
                 res.status(200).json(result);
             } catch (e) {

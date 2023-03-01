@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { Field } from './Field';
+import { FieldDefinition } from './FieldDefinition';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import 'github-markdown-css/github-markdown-dark.css';
 
-export const FieldMarkdown: Field = {
+export const FieldMarkdown: FieldDefinition = {
     input() {
         const options = useMemo(() => {
             return {
