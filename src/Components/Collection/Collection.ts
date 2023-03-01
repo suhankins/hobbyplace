@@ -35,7 +35,7 @@ export class CollectionClass implements defaultClasses.Base {
     @prop({ default: () => null })
     public image?: string;
 
-    @prop({ required: true })
+    @prop({ type: () => String, required: true })
     public category!: Category;
 
     @prop({ default: () => Date.now() })
