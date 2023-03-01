@@ -16,7 +16,7 @@ export default async function handler(
     const bucket = storage.bucket(process.env.BUCKET_NAME as string);
     const file = bucket.file(req.query.file as string);
     const options = {
-        expires: Date.now() + 1 * 60 * 1000, //  1 minute,
+        expires: Date.now() + 1 * 60 * 1000, // 1 minute,
         fields: { 'x-goog-meta-test': 'data' },
     };
 

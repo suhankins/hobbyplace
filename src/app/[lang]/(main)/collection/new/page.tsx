@@ -1,12 +1,13 @@
 'use client';
 
 import { ChangeEvent } from 'react';
+import React, { useState } from 'react';
+import { FileUploader } from 'react-drag-drop-files';
+
+const fileTypes = ['JPG', 'PNG', 'GIF', 'WEBP'];
 
 export default function Upload() {
-    const uploadPhoto = async (e: ChangeEvent) => {
-        const target = e.target as HTMLInputElement;
-        if (target.files === null) return;
-        const file = target.files[0];
+    const uploadPhoto = async (file: File) => {
         const filename = encodeURIComponent(file.name);
         const res = await fetch(`/api/upload?file=${filename}`);
         const { url, fields } = await res.json();
@@ -30,11 +31,11 @@ export default function Upload() {
 
     return (
         <>
-            <p>Upload a .png or .jpg image (max 1MB).</p>
-            <input
-                onChange={uploadPhoto}
-                type="file"
-                accept="image/png, image/jpeg"
+            <p>Upload your mother lmao gottem</p>
+            <FileUploader
+                handleChange={uploadPhoto}
+                maxSize={1}
+                types={fileTypes}
             />
         </>
     );
