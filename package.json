@@ -13,6 +13,8 @@
         "@pulumi/pulumi": "^3.55.0",
         "bcrypt": "^5.1.0",
         "daisyui": "^2.50.1",
+        "easymde": "^2.18.0",
+        "github-markdown-css": "^5.2.0",
         "http-status-codes": "^2.2.0",
         "marked": "^4.2.12",
         "mongoose": "^6.9.0",
@@ -23,6 +25,7 @@
         "react-drag-drop-files": "^2.3.9",
         "react-hook-form": "^7.43.2",
         "react-input-suggestions": "^2.3.4",
+        "react-simplemde-editor": "^5.2.0",
         "server-only": "^0.0.1"
     },
     "devDependencies": {
