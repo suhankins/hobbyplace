@@ -1,5 +1,6 @@
 {
     "name": "hobbyplace",
+    "main": "index.js",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -7,6 +8,9 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@google-cloud/storage": "^6.9.3",
+        "@pulumi/gcp": "^6.50.0",
+        "@pulumi/pulumi": "^3.55.0",
         "bcrypt": "^5.1.0",
         "daisyui": "^2.50.1",
         "http-status-codes": "^2.2.0",
