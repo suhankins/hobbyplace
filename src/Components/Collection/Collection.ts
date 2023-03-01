@@ -10,6 +10,8 @@ import '../../lib/mongodb';
 import { validateArrayLength } from '@/lib/validateArrayLength';
 import { ItemClass } from '../Item/Item';
 import { UserClass } from '../User/User';
+import type { Category } from '../Categories';
+import { FieldType } from '../Fields/FieldType';
 
 @modelOptions({
     schemaOptions: {
@@ -34,7 +36,7 @@ export class CollectionClass implements defaultClasses.Base {
     public image?: string;
 
     @prop({ required: true })
-    public category!: string;
+    public category!: Category;
 
     @prop({ default: () => Date.now() })
     public created?: number;
@@ -47,13 +49,13 @@ export class CollectionClass implements defaultClasses.Base {
 
     @prop(
         {
-            type: () => [String],
+            type: () => [FieldType],
             required: true,
             validate: [validateArrayLength(1, CollectionClass.FIELDS)],
         },
         PropType.ARRAY
     )
-    public fields!: string[];
+    public fields!: FieldType[];
 
     @prop({
         ref: () => ItemClass,

@@ -50,7 +50,7 @@ export class ItemClass implements defaultClasses.Base {
             collection.fields.length === fields.length
         ) {
             return collection.fields.every(
-                (value, index) => fields[index].type === value
+                (value, index) => fields[index].type === value.type
             );
         }
         return false;
