@@ -9,8 +9,6 @@ export default async function handler(
 ) {
     const { method, query } = req;
 
-    console.log(query);
-
     switch (method) {
         case 'GET':
             res.status(StatusCodes.OK).json(

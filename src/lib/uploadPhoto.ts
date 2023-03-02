@@ -1,11 +1,6 @@
-/**
- * Uploads a file to /api/upload
- * @param file file itself
- * @param fileFor what collection or item this file is for
- */
-export async function uploadPhoto(file: File, fileFor: string) {
-    const filename = encodeURIComponent(file.name);
-    const res = await fetch(`/api/upload?file=${filename}`);
+export async function uploadPhoto(file: File, type: string, id: string) {
+    const res = await fetch(`/api/upload?type=${type}&id=${id}&filetype=${file.name.split(".").slice(-1)}`);
+    if (!res.ok) return;
     const { url, fields } = await res.json();
     const formData = new FormData();
 
@@ -19,8 +14,9 @@ export async function uploadPhoto(file: File, fileFor: string) {
     });
 
     if (upload.ok) {
-        console.log('Uploaded successftully!');
+        console.log('Uploaded successfully!');
+        fetch(`/api/confirmUpload?type=${type}&id=${id}&filetype=${file.name.split(".").slice(-1)}`)
     } else {
         console.error('Upload failed.');
     }
-};
+}

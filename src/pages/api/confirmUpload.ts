@@ -1,16 +1,12 @@
 import { CollectionModel, UserModel } from '@/Components/shared/Models';
 import { UserController } from '@/Components/User/UserController';
-import {
-    GenerateSignedPostPolicyV4Options,
-    SignedPostPolicyV4Output,
-    Storage,
-} from '@google-cloud/storage';
+import { Storage } from '@google-cloud/storage';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<SignedPostPolicyV4Output | string | void>
+    res: NextApiResponse<void>
 ) {
     const { method, query } = req;
     if (method !== 'GET') {
@@ -66,13 +62,18 @@ export default async function handler(
         },
     });
 
-    const bucket = storage.bucket(process.env.BUCKET_NAME as string);
-    const file = bucket.file(`${query.id}${query.filetype}`);
-    const options: GenerateSignedPostPolicyV4Options = {
-        expires: Date.now() + 1 * 60 * 1000, // 1 minute,
-        fields: { 'x-goog-meta-test': 'data' },
-    };
+    const fileName = `${query.id}${query.filetype}`;
 
-    const [response] = await file.generateSignedPostPolicyV4(options);
-    res.status(200).json(response);
+    const bucket = storage.bucket(process.env.BUCKET_NAME as string);
+    const file = bucket.file(fileName);
+
+    if (!(await file.exists())) {
+        res.status(400).send();
+        return;
+    }
+
+    model.image = file.publicUrl();
+    model.save();
+    
+    res.status(200).send();
 }

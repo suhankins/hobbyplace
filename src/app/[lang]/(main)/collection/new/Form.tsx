@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import 'github-markdown-css/github-markdown-dark.css';
@@ -10,6 +10,7 @@ import { FieldType, FieldTypes } from '@/Components/Fields/FieldIndex';
 import { Cross } from '@/Components/shared/Icons';
 import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 export function Form() {
     const options = useMemo(() => {
@@ -24,6 +25,8 @@ export function Form() {
 
     const [fields, setFields] = useState([] as FieldType[]);
 
+    const fileUploaderRef = useRef(undefined as any);
+
     const {
         register,
         handleSubmit,
@@ -33,15 +36,30 @@ export function Form() {
         shouldUnregister: true,
     });
 
+    const router = useRouter();
+
     const onSubmit = (
         data: FieldValues,
         e: React.BaseSyntheticEvent | undefined
     ) => {
+        let collectionId: string;
         e!.preventDefault();
         fetch('/api/collection/', {
             method: 'POST',
             body: JSON.stringify(data),
-        }).then(() => console.log('HUH???'));
+        })
+            .then((res) => res.json())
+            .then((collection) => {
+                collectionId = collection._id as string;
+                return uploadPhoto(
+                    fileUploaderRef.current,
+                    'collection',
+                    collection.id
+                );
+            })
+            .then(() => {
+                router.push(`/collection/${collectionId}`);
+            });
     };
 
     return (
@@ -49,10 +67,12 @@ export function Form() {
             <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
                 <figure className="p-4 rounded-lg bg-base-200 h-min">
                     <FileUploader
+                        handleChange={(file: any) =>
+                            (fileUploaderRef.current = file)
+                        }
                         classes="w-96 !h-96"
-                        //handleChange={uploadPhoto}
                         maxSize={1}
-                        types={['JPG', 'PNG', 'GIF', 'WEBP']}
+                        types={['JPG', 'PNG']}
                     />
                 </figure>
                 <div className="flex flex-col gap-2 w-full">
