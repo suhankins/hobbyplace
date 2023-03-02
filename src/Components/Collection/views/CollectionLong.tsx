@@ -1,5 +1,6 @@
 import { ItemClass } from '@/Components/Item/Item';
 import { ItemSmall } from '@/Components/Item/views/ItemSmall';
+import { UserClass } from '@/Components/User/User';
 import Link from 'next/link';
 import { CollectionClass } from '../Collection';
 
@@ -10,8 +11,10 @@ export function CollectionLong({
     collection: CollectionClass;
     dictionary: {
         category: string;
+        author: string;
     };
 }) {
+    const owner = collection.owner as UserClass;
     return (
         <article className="w-full bg-base-300 rounded-xl shadow-xl overflow-hidden flex flex-col sm:flex-row sm:gap-4 items-center">
             <div className="card card-compact bg-base-200 w-full sm:w-48 rounded-none">
@@ -32,16 +35,10 @@ export function CollectionLong({
                         </Link>
                     </div>
                     <div className="flex flex-row gap-1 items-center">
-                        {/* TODO: Add owner of the collection */}
-                        <div className="avatar">
-                            <div className="w-8 rounded-full">
-                                <img src="/NOIMAGE.png" />
-                            </div>
-                        </div>
                         <Link
-                            href="#" // TODO: link to owner
+                            href={`/user/${owner.name}`}
                             className="text-accent focus:text-accent-focus hover:underline">
-                            someone
+                            {owner.name}
                         </Link>
                     </div>
                 </div>

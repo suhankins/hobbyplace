@@ -27,6 +27,7 @@ export const CollectionController = {
         if (includeItems)
             query.populate({ path: 'items', perDocumentLimit: itemsLimit });
         if (limit) query.limit(limit);
+        query.populate({ path: 'owner' });
 
         const result = await query;
         result.sort(sorts[sortBy]);
