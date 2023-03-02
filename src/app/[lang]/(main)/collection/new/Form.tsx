@@ -1,9 +1,6 @@
 'use client';
 
-import React, { useMemo, useRef, useState } from 'react';
-import SimpleMDE from 'react-simplemde-editor';
-import 'easymde/dist/easymde.min.css';
-import 'github-markdown-css/github-markdown-dark.css';
+import React, { useRef, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 import { Categories } from '@/Components/Categories';
 import { FieldType, FieldTypes } from '@/Components/Fields/FieldIndex';
@@ -11,18 +8,9 @@ import { Cross } from '@/Components/shared/Icons';
 import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { MDEInput } from '@/Components/MDEInput';
 
 export function Form() {
-    const options = useMemo(() => {
-        return {
-            hideIcons: ['side-by-side', 'fullscreen'],
-            spellChecker: false,
-            previewClass: ['markdown-body', 'p-4'],
-            status: false,
-            placeholder: 'Description',
-        } as EasyMDE.Options;
-    }, []);
-
     const [fields, setFields] = useState([] as FieldType[]);
 
     const fileUploaderRef = useRef(undefined as any);
@@ -82,11 +70,7 @@ export function Form() {
                         className="input input-ghost hover:border-gray-500 w-full card-title pl-0"
                         {...register('name', { required: true })}
                     />
-                    <input className="hidden" {...register('description')} />
-                    <SimpleMDE
-                        options={options}
-                        onChange={(value) => setValue('description', value)}
-                    />
+                    <MDEInput {...register('description')} setValue={setValue} />
                     <select
                         className="select w-full bg-base-200"
                         {...register('category', { required: true })}>
