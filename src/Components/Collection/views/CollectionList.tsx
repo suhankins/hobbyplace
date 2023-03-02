@@ -8,6 +8,7 @@ export function CollectionList({
     collections: CollectionClass[];
     dictionary: {
         category: string;
+        author: string;
     };
 }) {
     return (
