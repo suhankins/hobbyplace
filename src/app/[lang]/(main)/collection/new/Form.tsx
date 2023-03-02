@@ -6,38 +6,12 @@ import 'easymde/dist/easymde.min.css';
 import 'github-markdown-css/github-markdown-dark.css';
 import { FileUploader } from 'react-drag-drop-files';
 import { Categories } from '@/Components/Categories';
-import {
-    FieldIndex,
-    FieldType,
-    FieldTypes,
-} from '@/Components/Fields/FieldIndex';
+import { FieldType, FieldTypes } from '@/Components/Fields/FieldIndex';
 import { Cross } from '@/Components/shared/Icons';
-
-const fileTypes = ['JPG', 'PNG', 'GIF', 'WEBP'];
+import { uploadPhoto } from '@/lib/uploadPhoto';
+import { FieldValues, useForm } from 'react-hook-form';
 
 export function Form() {
-    const uploadPhoto = async (file: File) => {
-        const filename = encodeURIComponent(file.name);
-        const res = await fetch(`/api/upload?file=${filename}`);
-        const { url, fields } = await res.json();
-        const formData = new FormData();
-
-        Object.entries({ ...fields, file }).forEach(([key, value]) => {
-            formData.append(key, value as any);
-        });
-
-        const upload = await fetch(url, {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (upload.ok) {
-            console.log('Uploaded successftully!');
-        } else {
-            console.error('Upload failed.');
-        }
-    };
-
     const options = useMemo(() => {
         return {
             hideIcons: ['side-by-side', 'fullscreen'],
@@ -50,26 +24,54 @@ export function Form() {
 
     const [fields, setFields] = useState([] as FieldType[]);
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue,
+    } = useForm({
+        shouldUnregister: true,
+    });
+
+    const onSubmit = (
+        data: FieldValues,
+        e: React.BaseSyntheticEvent | undefined
+    ) => {
+        e!.preventDefault();
+        fetch('/api/collection/', {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }).then(() => console.log('HUH???'));
+    };
+
     return (
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
                 <figure className="p-4 rounded-lg bg-base-200 h-min">
                     <FileUploader
                         classes="w-96 !h-96"
-                        handleChange={uploadPhoto}
+                        //handleChange={uploadPhoto}
                         maxSize={1}
-                        types={fileTypes}
+                        types={['JPG', 'PNG', 'GIF', 'WEBP']}
                     />
                 </figure>
                 <div className="flex flex-col gap-2 w-full">
                     <input
                         type="text"
                         placeholder="Collection name"
-                        className="input input-ghost hover:border-gray-500 w-full card-title pl-0"></input>
-                    <SimpleMDE options={options} />
-                    <select className="select w-full bg-base-200">
+                        className="input input-ghost hover:border-gray-500 w-full card-title pl-0"
+                        {...register('name', { required: true })}
+                    />
+                    <input className="hidden" {...register('description')} />
+                    <SimpleMDE
+                        options={options}
+                        onChange={(value) => setValue('description', value)}
+                    />
+                    <select
+                        className="select w-full bg-base-200"
+                        {...register('category', { required: true })}>
                         {Categories.map((category) => (
-                            <option>{category}</option>
+                            <option key={category}>{category}</option>
                         ))}
                     </select>
                     <div className="dropdown dropdown-end">
@@ -99,12 +101,18 @@ export function Form() {
                             <div className="card-body">
                                 <h2 className="card-title">{value}</h2>
                                 <div className="flex flex-col">
+                                    <input
+                                        className="hidden"
+                                        value={value}
+                                        {...register(`fields[${index}].type`)}
+                                    />
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
                                     <input
                                         type="text"
                                         className="input bg-base-200"
+                                        {...register(`fields[${index}].name`)}
                                     />
                                 </div>
                                 <button
