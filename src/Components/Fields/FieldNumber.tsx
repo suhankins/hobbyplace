@@ -1,15 +1,34 @@
-import { ChangeEventHandler, FocusEventHandler, LegacyRef } from 'react';
+import {
+    ChangeEventHandler,
+    FocusEventHandler,
+    ForwardedRef,
+    forwardRef,
+} from 'react';
 import { Field } from './Field';
 
 export const FieldNumber: Field = {
-    input(params: {
-        onChange: ChangeEventHandler;
-        onBlur: FocusEventHandler;
-        name: string;
-        ref: LegacyRef<HTMLInputElement>;
-    }) {
-        return <input className="input" type="number" placeholder='0' {...params} />;
-    },
+    input: forwardRef(
+        (
+            params: {
+                onChange: ChangeEventHandler;
+                onBlur: FocusEventHandler;
+                name: string;
+            },
+            ref
+        ) => {
+            return (
+                <input
+                    className="input"
+                    type="number"
+                    placeholder="0"
+                    onChange={params.onChange}
+                    onBlur={params.onBlur}
+                    name={params.name}
+                    ref={ref as ForwardedRef<HTMLInputElement>}
+                />
+            );
+        }
+    ),
     output(value: number) {
         return <span>{value}</span>;
     },
