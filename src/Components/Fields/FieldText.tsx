@@ -1,3 +1,5 @@
+'use client';
+
 import {
     ChangeEventHandler,
     FocusEventHandler,
@@ -18,7 +20,7 @@ export const FieldText: Field = {
         ) => {
             return (
                 <input
-                    className="input"
+                    className="input w-full"
                     type="text"
                     placeholder="..."
                     onChange={params.onChange}

@@ -1,14 +1,19 @@
 'use client';
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
-
-
 import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { FieldIndex, FieldType } from '@/Components/Fields/FieldIndex';
 
-export function Form() {
+export function Form({
+    collectionId,
+    fields,
+}: {
+    collectionId: string;
+    fields: { name: string; type: string; _id: string }[];
+}) {
     const fileUploaderRef = useRef(undefined as any);
 
     const {
@@ -22,29 +27,58 @@ export function Form() {
 
     const router = useRouter();
 
-    const onSubmit = (
-        data: FieldValues,
-        e: React.BaseSyntheticEvent | undefined
-    ) => {
-        let collectionId: string;
-        e!.preventDefault();
-        fetch('/api/collection/', {
-            method: 'POST',
-            body: JSON.stringify(data),
-        })
-            .then((res) => res.json())
-            .then((collection) => {
-                collectionId = collection._id as string;
-                return uploadPhoto(
-                    fileUploaderRef.current,
-                    'collection',
-                    collection.id
-                );
+    const renderedFields = useMemo(
+        () => (
+            <>
+                {fields.map((field, index) => {
+                    const CustomInput =
+                        FieldIndex[field.type as FieldType].input;
+                    register(`fields[${index}].belongsTo`);
+                    setValue(`fields[${index}].belongsTo`, field._id);
+                    return (
+                        <div
+                            className="p-4 rounded-lg bg-base-200"
+                            key={field._id}>
+                            <label className="label">
+                                <span className="label-test">{field.name}</span>
+                            </label>
+                            <CustomInput
+                                {...register(`fields[${index}].value`)}
+                                setValue={setValue}
+                            />
+                        </div>
+                    );
+                })}
+            </>
+        ),
+        []
+    );
+
+    const onSubmit = useMemo(
+        () => (data: FieldValues, e: React.BaseSyntheticEvent | undefined) => {
+            let itemId: string;
+            e!.preventDefault();
+            console.log(data)
+            fetch('/api/item/', {
+                method: 'POST',
+                body: JSON.stringify(data),
             })
-            .then(() => {
-                router.push(`/collection/${collectionId}`);
-            });
-    };
+                .then((res) => res.json())
+                .then((item) => {
+                    itemId = item._id as string;
+                    return uploadPhoto(fileUploaderRef.current, 'item', itemId);
+                })
+                .then(() => {
+                    router.push(`/item/${itemId}`);
+                });
+        },
+        []
+    );
+
+    useEffect(() => {
+        register('belongsTo');
+        setValue('belongsTo', collectionId);
+    }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,10 +96,22 @@ export function Form() {
                 <div className="flex flex-col gap-2 w-full">
                     <input
                         type="text"
-                        placeholder="Collection name"
+                        placeholder="Item name"
                         className="input input-ghost hover:border-gray-500 w-full card-title pl-0"
                         {...register('name', { required: true })}
                     />
+                    <label className="label">
+                        <span className="label-test">
+                            Tags (comma separated)
+                        </span>
+                    </label>
+                    <input
+                        placeholder="cat, dog..."
+                        type="text"
+                        className="input bg-base-200"
+                        {...register('tags')}
+                    />
+                    {renderedFields}
                     <input
                         type="submit"
                         className="btn btn-primary w-1/2 self-center"

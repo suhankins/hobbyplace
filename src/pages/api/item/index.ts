@@ -26,19 +26,15 @@ export default async function handler(
                 return;
             }
 
-            // Field validation is too complex to be done automatically, so it's done here
-            if (
-                !(await ItemClass.ValidateFields(query.belongsTo, query.fields))
-            ) {
-                res.status(StatusCodes.BAD_REQUEST).send();
-                return;
-            }
-
             try {
+                const tags = query.tags
+                    ?.toString()
+                    .split(',')
+                    .map((value) => value.trim());
                 const result = await ItemModel.create({
                     name: query.name as string,
-                    image: query.image as string,
-                    tags: query.tags as string[],
+                    image: null,
+                    tags: tags,
                     fields: query.fields as ItemField[],
                     belongsTo: query.belongsTo,
                 });

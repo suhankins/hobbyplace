@@ -1,8 +1,6 @@
-import {
-    ChangeEventHandler,
-    FocusEventHandler,
-    forwardRef,
-} from 'react';
+'use client';
+
+import { ChangeEventHandler, FocusEventHandler, forwardRef } from 'react';
 import { Field } from './Field';
 import { UseFormSetValue, FieldValues } from 'react-hook-form';
 import { MDEInput } from '../MDEInput';

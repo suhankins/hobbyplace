@@ -3,7 +3,6 @@ import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
 import { ItemField } from '../Fields/modelFields/ItemField';
-import { CollectionModel } from '../shared/Models';
 
 export class ItemClass implements defaultClasses.Base {
     public _id!: mongoose.Types.ObjectId;
@@ -36,23 +35,5 @@ export class ItemClass implements defaultClasses.Base {
         },
         PropType.ARRAY
     )
-    // Fields require a lot of validation that can only be done after belongsTo is resolved
     public fields!: ItemField[];
-
-    static async ValidateFields(
-        belongsTo: Ref<CollectionClass>,
-        fields: ItemField[]
-    ): Promise<boolean> {
-        const collection = await CollectionModel.findById(belongsTo);
-        if (
-            collection !== null &&
-            collection !== undefined &&
-            collection.fields.length === fields.length
-        ) {
-            return collection.fields.every(
-                (value, index) => fields[index].type === value.type
-            );
-        }
-        return false;
-    }
 }
