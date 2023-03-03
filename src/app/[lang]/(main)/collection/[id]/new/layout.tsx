@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 
 export default async function validateSession({
     children,
-    params
+    params,
 }: {
     children: React.ReactNode;
     params: { id: string };
@@ -18,7 +18,8 @@ export default async function validateSession({
     const user = await UserController.getByEmail(session.user?.email as string);
     const model = await CollectionModel.findById(params.id).populate('owner');
     const owner = model?.owner as UserClass;
-    if (user?.email !== owner.email) redirect('/api/auth/signin'); // TODO: Change this when i move to my own login form
+    if (user?.email !== owner.email && user?.role !== 'admin')
+        redirect('/api/auth/signin'); // TODO: Change this when i move to my own login form
 
     return <>{children}</>;
 }
