@@ -1,4 +1,8 @@
-import { CollectionModel, UserModel } from '@/Components/shared/Models';
+import {
+    CollectionModel,
+    ItemModel,
+    UserModel,
+} from '@/Components/shared/Models';
 import { UserController } from '@/Components/User/UserController';
 import { Storage } from '@google-cloud/storage';
 import { NextApiRequest, NextApiResponse } from 'next';
@@ -34,21 +38,33 @@ export default async function handler(
         return;
     }
 
+    let id = query.id;
     let model;
     switch (query.type) {
-        case 'collection':
-            model = await CollectionModel.findById(query.id);
-            if (model === null || model === undefined) {
+        case 'item': {
+            const item = await ItemModel.findById(id);
+            if (item === null || item === undefined) {
                 res.status(400).send();
                 return;
             }
-            const owner = await UserModel.findById(model.owner._id);
-            if (owner?.email !== token.email && user?.role !== 'admin') {
-                res.status(401).send();
-                return;
+            model = item;
+            id = item.belongsTo._id.toString();
+        }
+        case 'collection':
+            {
+                const collection = await CollectionModel.findById(id);
+                if (collection === null || collection === undefined) {
+                    res.status(400).send();
+                    return;
+                }
+                const owner = await UserModel.findById(collection.owner._id);
+                if (owner?.email !== token.email && user?.role !== 'admin') {
+                    res.status(401).send();
+                    return;
+                }
+                if (model === undefined) model = collection;
             }
             break;
-        //case 'item':
         default:
             res.status(400).send();
             return;
@@ -74,6 +90,6 @@ export default async function handler(
 
     model.image = file.publicUrl();
     model.save();
-    
+
     res.status(200).send();
 }

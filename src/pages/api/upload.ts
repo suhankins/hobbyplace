@@ -1,4 +1,8 @@
-import { CollectionModel, UserModel } from '@/Components/shared/Models';
+import {
+    CollectionModel,
+    ItemModel,
+    UserModel,
+} from '@/Components/shared/Models';
 import { UserController } from '@/Components/User/UserController';
 import {
     GenerateSignedPostPolicyV4Options,
@@ -38,21 +42,30 @@ export default async function handler(
         return;
     }
 
-    let model;
+    let id = query.id;
     switch (query.type) {
-        case 'collection':
-            model = await CollectionModel.findById(query.id);
+        case 'item': {
+            const model = await ItemModel.findById(id);
             if (model === null || model === undefined) {
                 res.status(400).send();
                 return;
             }
-            const owner = await UserModel.findById(model.owner._id);
-            if (owner?.email !== token.email && user?.role !== 'admin') {
-                res.status(401).send();
-                return;
+            id = model.belongsTo._id.toString();
+        }
+        case 'collection':
+            {
+                const model = await CollectionModel.findById(id);
+                if (model === null || model === undefined) {
+                    res.status(400).send();
+                    return;
+                }
+                const owner = await UserModel.findById(model.owner._id);
+                if (owner?.email !== token.email && user?.role !== 'admin') {
+                    res.status(401).send();
+                    return;
+                }
             }
             break;
-        //case 'item':
         default:
             res.status(400).send();
             return;
