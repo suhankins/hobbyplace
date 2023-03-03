@@ -2,7 +2,7 @@ import { defaultClasses, mongoose, prop, PropType } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
-import { ItemField } from '../Fields/ItemField';
+import { ItemField } from '../Fields/modelFields/ItemField';
 import { CollectionModel } from '../shared/Models';
 
 export class ItemClass implements defaultClasses.Base {

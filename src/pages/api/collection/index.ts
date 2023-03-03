@@ -4,7 +4,7 @@ import { CollectionModel } from '@/Components/shared/Models';
 import { parseJson } from '@/lib/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { CollectionField } from '@/Components/Fields/CollectionField';
+import { CollectionField } from '@/Components/Fields/modelFields/CollectionField';
 import { getToken } from 'next-auth/jwt';
 import { UserController } from '@/Components/User/UserController';
 

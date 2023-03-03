@@ -11,7 +11,7 @@ import { validateArrayLength } from '@/lib/validateArrayLength';
 import { ItemClass } from '../Item/Item';
 import { UserClass } from '../User/User';
 import type { Category } from '../Categories';
-import { CollectionField } from '../Fields/CollectionField';
+import { CollectionField } from '../Fields/modelFields/CollectionField';
 
 @modelOptions({
     schemaOptions: {
