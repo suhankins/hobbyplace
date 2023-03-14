@@ -3,7 +3,7 @@ import {
     ItemModel,
     UserModel,
 } from '@/components/MVC/Models';
-import { UserController } from '@/Components/User/UserController';
+import { UserController } from '@/components/MVC/User/UserController';
 import { Storage } from '@google-cloud/storage';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getToken } from 'next-auth/jwt';

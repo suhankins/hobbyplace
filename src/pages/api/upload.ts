@@ -3,7 +3,7 @@ import {
     ItemModel,
     UserModel,
 } from '@/components/MVC/Models';
-import { UserController } from '@/Components/User/UserController';
+import { UserController } from '@/components/MVC/User/UserController';
 import {
     GenerateSignedPostPolicyV4Options,
     SignedPostPolicyV4Output,
