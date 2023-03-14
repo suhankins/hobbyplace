@@ -7,7 +7,7 @@ import {
 import type { Ref } from '@typegoose/typegoose';
 import '../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
-import { EmailPattern } from '../shared/EmailPattern';
+import { EmailPattern } from '../../lib/EmailPattern';
 
 @modelOptions({
     schemaOptions: {

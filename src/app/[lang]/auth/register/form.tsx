@@ -1,6 +1,6 @@
 'use client';
 
-import { EmailPattern } from '@/Components/shared/EmailPattern';
+import { EmailPattern } from '@/lib/EmailPattern';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
