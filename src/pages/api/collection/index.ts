@@ -6,7 +6,7 @@ import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { CollectionField } from '@/components/MVC/Field/modelFields/CollectionField';
 import { getToken } from 'next-auth/jwt';
-import { UserController } from '@/Components/User/UserController';
+import { UserController } from '@/components/MVC/User/UserController';
 
 export default async function handler(
     req: NextApiRequest,

@@ -1,4 +1,4 @@
-import { ItemField } from '@/Components/Fields/modelFields/ItemField';
+import { ItemField } from '@/components/MVC/Field/modelFields/ItemField';
 import { handleDbError } from '@/lib/handleDbError';
 import { ItemModel } from '@/components/MVC/Models';
 import { parseJson } from '@/lib/parseJson';

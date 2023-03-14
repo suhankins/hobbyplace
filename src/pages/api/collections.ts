@@ -1,5 +1,5 @@
 import { CollectionClass } from '@/components/MVC/Collection/Collection';
-import { CollectionController } from '@/Components/Collection/CollectionController';
+import { CollectionController } from '@/components/MVC/Collection/CollectionController';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
