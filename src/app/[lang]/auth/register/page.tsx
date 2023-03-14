@@ -1,5 +1,5 @@
-import { getDictionary } from '@/get-dictionary';
-import { i18n, Locale } from '@/i18n-config';
+import { getDictionary } from '@/lib/get-dictionary';
+import { i18n, Locale } from '@/lib/i18n-config';
 import { RegisterForm } from './form';
 
 export default async function App({

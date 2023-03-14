@@ -1,8 +1,8 @@
 import { CollectionClass } from '@/components/MVC/Collection/Collection';
 import { CollectionController } from '@/components/MVC/Collection/CollectionController';
 import { CollectionList } from '@/components/MVC/Collection/views/CollectionList';
-import { getDictionary } from '@/get-dictionary';
-import { Locale } from '@/i18n-config';
+import { getDictionary } from '@/lib/get-dictionary';
+import { Locale } from '@/lib/i18n-config';
 
 export default async function Home({
     params: { lang },

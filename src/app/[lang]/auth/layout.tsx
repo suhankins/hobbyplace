@@ -3,7 +3,7 @@
 import { GoBack } from '@/components/ViewOnly/GoBack/GoBack';
 import { LanguageSwitch } from '@/components/ViewOnly/LanguageSwitch/LanguageSwitch';
 import { ThemeSwitch } from '@/components/ViewOnly/ThemeSwitch/ThemeSwitch';
-import { Locale } from '@/i18n-config';
+import { Locale } from '@/lib/i18n-config';
 
 export default function AuthLayout({
     children,

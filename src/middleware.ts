@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
-import { i18n } from './i18n-config';
+import { i18n } from '@/lib/i18n-config';
 
 function getLocale(request: NextRequest) {
     const prefered = request.cookies.get('language');

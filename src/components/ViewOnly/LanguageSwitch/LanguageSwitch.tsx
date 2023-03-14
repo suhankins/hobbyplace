@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { i18n, Locale } from '../../../i18n-config';
+import { i18n, Locale } from '@/lib/i18n-config';
 
 export function LanguageSwitch({ currentLocale }: { currentLocale: Locale }) {
     const pathname = usePathname();

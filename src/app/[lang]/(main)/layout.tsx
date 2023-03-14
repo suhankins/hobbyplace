@@ -2,8 +2,8 @@ import { LanguageSwitch } from '@/components/ViewOnly/LanguageSwitch/LanguageSwi
 import { Searchbar } from '@/components/ViewOnly/Searchbar/Searchbar';
 import { Burger } from '@/components/ViewOnly/Icons/Icons';
 import { ThemeSwitch } from '@/components/ViewOnly/ThemeSwitch/ThemeSwitch';
-import { getDictionary } from '@/get-dictionary';
-import { Locale } from '@/i18n-config';
+import { getDictionary } from '@/lib/get-dictionary';
+import { Locale } from '@/lib/i18n-config';
 import Link from 'next/link';
 import { DrawerMenu } from './DrawerMenu';
 
