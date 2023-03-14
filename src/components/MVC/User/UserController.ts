@@ -1,4 +1,4 @@
-import { UserModel } from "../MVC/Models";
+import { UserModel } from "../Models";
 
 export const UserController = {
     async getByEmail(email: string) {
