@@ -5,9 +5,9 @@ import {
     prop,
 } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
-import '../../lib/mongodb';
+import '../../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
-import { EmailPattern } from '../../lib/EmailPattern';
+import { EmailPattern } from '../../../lib/EmailPattern';
 
 @modelOptions({
     schemaOptions: {

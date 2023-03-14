@@ -1,6 +1,6 @@
-import { CollectionClass } from '@/Components/Collection/Collection';
-import { CollectionController } from '@/Components/Collection/CollectionController';
-import { CollectionList } from '@/Components/Collection/views/CollectionList';
+import { CollectionClass } from '@/components/MVC/Collection/Collection';
+import { CollectionController } from '@/components/MVC/Collection/CollectionController';
+import { CollectionList } from '@/components/MVC/Collection/views/CollectionList';
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 

@@ -1,4 +1,4 @@
-import { CollectionClass } from '@/Components/Collection/Collection';
+import { CollectionClass } from '@/components/MVC/Collection/Collection';
 import { CollectionController } from '@/Components/Collection/CollectionController';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';

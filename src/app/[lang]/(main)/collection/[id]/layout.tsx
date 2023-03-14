@@ -1,4 +1,4 @@
-import { CollectionModel } from '@/Components/shared/Models';
+import { CollectionModel } from '@/components/MVC/Models';
 import { notFound, redirect } from 'next/navigation';
 
 export default async function itemPage({

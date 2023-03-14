@@ -2,13 +2,13 @@
 
 import React, { useRef, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
-import { Categories } from '@/Components/Categories';
-import { FieldType, FieldTypes } from '@/Components/Fields/FieldIndex';
-import { Cross } from '@/Components/shared/Icons';
+import { Categories } from '@/components/MVC/Collection/Categories';
+import { FieldType, FieldTypes } from '@/components/MVC/Field/FieldIndex';
+import { Cross } from '@/components/ViewOnly/Icons/Icons';
 import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { MDEInput } from '@/Components/MDEInput';
+import { MDEInput } from '@/components/ViewOnly/MDEInput/MDEInput';
 
 export function Form() {
     const [fields, setFields] = useState([] as FieldType[]);

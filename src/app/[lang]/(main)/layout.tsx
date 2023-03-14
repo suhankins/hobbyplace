@@ -1,7 +1,7 @@
-import { LanguageSwitch } from '@/Components/LanguageSwitch/LanguageSwitch';
-import { Searchbar } from '@/Components/Searchbar/Searchbar';
-import { Burger } from '@/Components/shared/Icons';
-import { ThemeSwitch } from '@/Components/ThemeSwitch/ThemeSwitch';
+import { LanguageSwitch } from '@/components/ViewOnly/LanguageSwitch/LanguageSwitch';
+import { Searchbar } from '@/components/ViewOnly/Searchbar/Searchbar';
+import { Burger } from '@/components/ViewOnly/Icons/Icons';
+import { ThemeSwitch } from '@/components/ViewOnly/ThemeSwitch/ThemeSwitch';
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import Link from 'next/link';

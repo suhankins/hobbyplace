@@ -1,8 +1,8 @@
 'use client';
 
-import { GoBack } from '@/Components/GoBack';
-import { LanguageSwitch } from '@/Components/LanguageSwitch/LanguageSwitch';
-import { ThemeSwitch } from '@/Components/ThemeSwitch/ThemeSwitch';
+import { GoBack } from '@/components/ViewOnly/GoBack/GoBack';
+import { LanguageSwitch } from '@/components/ViewOnly/LanguageSwitch/LanguageSwitch';
+import { ThemeSwitch } from '@/components/ViewOnly/ThemeSwitch/ThemeSwitch';
 import { Locale } from '@/i18n-config';
 
 export default function AuthLayout({

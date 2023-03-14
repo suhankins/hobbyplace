@@ -1,4 +1,4 @@
-import { CollectionModel, UserModel } from '@/Components/shared/Models';
+import { CollectionModel, UserModel } from '@/components/MVC/Models';
 import Link from 'next/link';
 import { Form } from './Form';
 

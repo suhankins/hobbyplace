@@ -6,12 +6,12 @@ import {
     mongoose,
 } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
-import '../../lib/mongodb';
+import '@/lib/mongodb';
 import { validateArrayLength } from '@/lib/validateArrayLength';
 import { ItemClass } from '../Item/Item';
 import { UserClass } from '../User/User';
-import type { Category } from '../Categories';
-import { CollectionField } from '../Fields/modelFields/CollectionField';
+import type { Category } from './Categories';
+import { CollectionField } from '../Field/modelFields/CollectionField';
 
 @modelOptions({
     schemaOptions: {

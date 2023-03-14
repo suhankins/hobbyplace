@@ -1,5 +1,5 @@
-import { UserModel } from '@/Components/shared/Models';
-import { UserClass } from '@/Components/User/User';
+import { UserModel } from '@/components/MVC/Models';
+import { UserClass } from '@/components/MVC/User/User';
 import { handleDbError } from '@/lib/handleDbError';
 import { parseJson } from '@/lib/parseJson';
 import { StatusCodes } from 'http-status-codes';

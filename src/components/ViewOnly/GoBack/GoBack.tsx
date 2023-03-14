@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ChevronLeft } from './shared/Icons';
+import { ChevronLeft } from '../Icons/Icons';
 
 export function GoBack() {
     const router = useRouter();

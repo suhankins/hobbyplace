@@ -2,7 +2,7 @@ import {
     CollectionModel,
     ItemModel,
     UserModel,
-} from '@/Components/shared/Models';
+} from '@/components/MVC/Models';
 import { UserController } from '@/Components/User/UserController';
 import { Storage } from '@google-cloud/storage';
 import { NextApiRequest, NextApiResponse } from 'next';

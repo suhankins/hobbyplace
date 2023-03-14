@@ -1,4 +1,4 @@
-import { ThemeSetUp } from '@/Components/ThemeSwitch/ThemeSetUp';
+import { ThemeSetUp } from '@/components/ViewOnly/ThemeSwitch/ThemeSetUp';
 import { CustomSessionProvider } from './SessionProvider';
 import './globals.css';
 

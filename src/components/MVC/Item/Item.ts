@@ -1,8 +1,8 @@
 import { defaultClasses, mongoose, prop, PropType } from '@typegoose/typegoose';
 import type { Ref } from '@typegoose/typegoose';
-import '../../lib/mongodb';
+import '../../../lib/mongodb';
 import { CollectionClass } from '../Collection/Collection';
-import { ItemField } from '../Fields/modelFields/ItemField';
+import { ItemField } from '../Field/modelFields/ItemField';
 
 export class ItemClass implements defaultClasses.Base {
     public _id!: mongoose.Types.ObjectId;

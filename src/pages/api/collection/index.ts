@@ -1,10 +1,10 @@
-import { CollectionClass } from '@/Components/Collection/Collection';
+import { CollectionClass } from '@/components/MVC/Collection/Collection';
 import { handleDbError } from '@/lib/handleDbError';
-import { CollectionModel } from '@/Components/shared/Models';
+import { CollectionModel } from '@/components/MVC/Models';
 import { parseJson } from '@/lib/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { CollectionField } from '@/Components/Fields/modelFields/CollectionField';
+import { CollectionField } from '@/components/MVC/Field/modelFields/CollectionField';
 import { getToken } from 'next-auth/jwt';
 import { UserController } from '@/Components/User/UserController';
 

@@ -1,4 +1,4 @@
-import { UserModel } from '@/Components/shared/Models';
+import { UserModel } from '@/components/MVC/Models';
 import { compare } from 'bcrypt';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';

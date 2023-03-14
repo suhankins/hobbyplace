@@ -5,7 +5,7 @@ import { FileUploader } from 'react-drag-drop-files';
 import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { FieldIndex, FieldType } from '@/Components/Fields/FieldIndex';
+import { FieldIndex, FieldType } from '@/components/MVC/Field/FieldIndex';
 
 export function Form({
     collectionId,

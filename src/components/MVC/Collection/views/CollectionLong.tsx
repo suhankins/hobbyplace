@@ -1,6 +1,6 @@
-import { ItemClass } from '@/Components/Item/Item';
-import { ItemSmall } from '@/Components/Item/views/ItemSmall';
-import { UserClass } from '@/Components/User/User';
+import { ItemClass } from '@/components/MVC/Item/Item';
+import { ItemSmall } from '@/components/MVC/Item/views/ItemSmall';
+import { UserClass } from '@/components/MVC/User/User';
 import Link from 'next/link';
 import { CollectionClass } from '../Collection';
 

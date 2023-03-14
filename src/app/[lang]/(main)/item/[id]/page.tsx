@@ -1,4 +1,4 @@
-import { ItemModel } from "@/Components/shared/Models";
+import { ItemModel } from "@/components/MVC/Models";
 import { notFound } from 'next/navigation';
 
 export default async function itemPage({ params }: { params: { id: string } }) {

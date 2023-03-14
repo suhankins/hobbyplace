@@ -1,10 +1,10 @@
 import { ItemField } from '@/Components/Fields/modelFields/ItemField';
 import { handleDbError } from '@/lib/handleDbError';
-import { ItemModel } from '@/Components/shared/Models';
+import { ItemModel } from '@/components/MVC/Models';
 import { parseJson } from '@/lib/parseJson';
 import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ItemClass } from '@/Components/Item/Item';
+import { ItemClass } from '@/components/MVC/Item/Item';
 
 export default async function handler(
     req: NextApiRequest,

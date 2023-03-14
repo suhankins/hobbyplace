@@ -1,5 +1,4 @@
-import { CollectionModel } from '../shared/Models';
-import { CollectionClass } from './Collection';
+import { CollectionModel } from '../Models';
 
 type getAllParameters = {
     limit?: number;
