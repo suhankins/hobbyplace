@@ -3,7 +3,7 @@
 import { ChangeEventHandler, FocusEventHandler, forwardRef } from 'react';
 import { Field } from './Field';
 import { UseFormSetValue, FieldValues } from 'react-hook-form';
-import { MDEInput } from '../MDEInput';
+import { MDEInput } from '@/components/ViewOnly/MDEInput/MDEInput';
 
 export const FieldMarkdown: Field = {
     input: forwardRef(
