@@ -16,5 +16,13 @@
     "collection": {
         "category": "Категория",
         "author": "Автор"
+    },
+    "creation_form": {
+        "create_collection": "Создание новой коллекции",
+        "create_item": "Создание нового предмета",
+        "add_field": "Добавить поле",
+        "field_name": "Название поля",
+        "collection_name": "Название коллекции",
+        "create_button": "Создать"
     }
 }

@@ -10,7 +10,16 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { MDEInput } from '@/components/ViewOnly/MDEInput/MDEInput';
 
-export function Form() {
+export function Form({
+    dictionary
+}: {
+    dictionary: {
+        collection_name: string,
+        add_field: string,
+        create_button: string,
+        field_name: string
+    }
+}) {
     const [fields, setFields] = useState([] as FieldType[]);
 
     const fileUploaderRef = useRef(undefined as any);
@@ -66,7 +75,7 @@ export function Form() {
                 <div className="flex flex-col gap-2 w-full">
                     <input
                         type="text"
-                        placeholder="Collection name"
+                        placeholder={dictionary.collection_name}
                         className="input input-ghost hover:border-gray-500 w-full card-title pl-0"
                         {...register('name', { required: true })}
                     />
@@ -80,7 +89,7 @@ export function Form() {
                     </select>
                     <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn w-full">
-                            Add field
+                            {dictionary.add_field}
                         </label>
                         <ul
                             tabIndex={0}
@@ -111,7 +120,7 @@ export function Form() {
                                         {...register(`fields[${index}].type`)}
                                     />
                                     <label className="label">
-                                        <span className="label-text">Name</span>
+                                        <span className="label-text">{dictionary.field_name}</span>
                                     </label>
                                     <input
                                         type="text"
@@ -137,7 +146,7 @@ export function Form() {
                     <input
                         type="submit"
                         className="btn btn-primary w-1/2 self-center"
-                        value="Create"
+                        value={dictionary.create_button}
                     />
                 </div>
             </div>
