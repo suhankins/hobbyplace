@@ -17,13 +17,20 @@
         "category": "Категория",
         "author": "Автор"
     },
-    "creation_form": {
+    "collection_form": {
         "create_collection": "Создание новой коллекции",
-        "create_item": "Создание нового предмета",
         "add_field": "Добавить поле",
         "field_name": "Название поля",
         "collection_name": "Название коллекции",
         "create_button": "Создать"
+    },
+    "item_form": {
+        "new_item": "Новый предмет",
+        "item_name": "Название предмета",
+        "create_item": "Создание нового предмета",
+        "tags": "Теги (через запятую)",
+        "create_button": "Создать",
+        "tags_placeholder": "собака, кот, ..."
     },
     "image_uploader": {
         "label": "Загрузите изображение",

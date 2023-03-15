@@ -1,18 +1,31 @@
 'use client';
 
 import React, { useEffect, useMemo, useRef } from 'react';
-import { FileUploader } from 'react-drag-drop-files';
 import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { FieldIndex, FieldType } from '@/components/MVC/Field/FieldIndex';
+import {
+    ImageUploader,
+    ImageUploaderDictionary,
+} from '@/components/ViewOnly/ImageUploader/ImageUploader';
 
 export function Form({
     collectionId,
     fields,
+    dictionary,
+    imageUploaderDictionary,
 }: {
     collectionId: string;
     fields: { name: string; type: string; _id: string }[];
+    dictionary: {
+        item_name: string;
+        create_item: string;
+        create_button: string;
+        tags: string;
+        tags_placeholder: string;
+    };
+    imageUploaderDictionary: ImageUploaderDictionary;
 }) {
     const fileUploaderRef = useRef(undefined as any);
 
@@ -38,7 +51,8 @@ export function Form({
                     return (
                         <div
                             className="p-4 rounded-lg bg-base-200"
-                            key={field._id}>
+                            key={field._id}
+                        >
                             <label className="label">
                                 <span className="label-test">{field.name}</span>
                             </label>
@@ -58,7 +72,7 @@ export function Form({
         () => (data: FieldValues, e: React.BaseSyntheticEvent | undefined) => {
             let itemId: string;
             e!.preventDefault();
-            console.log(data)
+            console.log(data);
             fetch('/api/item/', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -84,29 +98,23 @@ export function Form({
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
                 <figure className="p-4 rounded-lg bg-base-200 h-min">
-                    <FileUploader
-                        handleChange={(file: any) =>
-                            (fileUploaderRef.current = file)
-                        }
-                        classes="w-96 !h-96"
-                        maxSize={1}
-                        types={['JPG', 'PNG']}
+                    <ImageUploader
+                        dictionary={imageUploaderDictionary}
+                        fileUploaderRef={fileUploaderRef}
                     />
                 </figure>
                 <div className="flex flex-col gap-2 w-full">
                     <input
                         type="text"
-                        placeholder="Item name"
+                        placeholder={dictionary.item_name}
                         className="input input-ghost hover:border-gray-500 w-full card-title pl-0"
                         {...register('name', { required: true })}
                     />
                     <label className="label">
-                        <span className="label-test">
-                            Tags (comma separated)
-                        </span>
+                        <span className="label-test">{dictionary.tags}</span>
                     </label>
                     <input
-                        placeholder="cat, dog..."
+                        placeholder={dictionary.tags_placeholder}
                         type="text"
                         className="input bg-base-200"
                         {...register('tags')}
@@ -115,7 +123,7 @@ export function Form({
                     <input
                         type="submit"
                         className="btn btn-primary w-1/2 self-center"
-                        value="Create"
+                        value={dictionary.create_button}
                     />
                 </div>
             </div>

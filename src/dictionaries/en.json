@@ -17,13 +17,20 @@
         "category": "Category",
         "author": "Author"
     },
-    "creation_form": {
+    "collection_form": {
         "create_collection": "Create a new collection",
-        "create_item": "Create a new item",
         "add_field": "Add field",
         "field_name": "Name",
         "collection_name": "Collection name",
         "create_button": "Create"
+    },
+    "item_form": {
+        "new_item": "New item",
+        "item_name": "Item name",
+        "create_item": "Create a new item",
+        "tags": "Tags (comma separated)",
+        "create_button": "Create",
+        "tags_placeholder": "dog, cat, ..."
     },
     "image_uploader": {
         "label": "Drop your image here",

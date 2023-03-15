@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 
+export type ImageUploaderDictionary = {
+    label: string;
+    hover_title: string;
+}
+
 export function ImageUploader({
     dictionary,
     fileUploaderRef,
 }: {
-    dictionary: {
-        label: string;
-        hover_title: string;
-    };
+    dictionary: ImageUploaderDictionary;
     fileUploaderRef: React.MutableRefObject<any>;
 }) {
     const [image, setImage] = useState(undefined as string | undefined);

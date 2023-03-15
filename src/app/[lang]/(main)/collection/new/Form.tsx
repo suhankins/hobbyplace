@@ -8,7 +8,10 @@ import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { MDEInput } from '@/components/ViewOnly/MDEInput/MDEInput';
-import { ImageUploader } from '@/components/ViewOnly/ImageUploader/ImageUploader';
+import {
+    ImageUploader,
+    ImageUploaderDictionary,
+} from '@/components/ViewOnly/ImageUploader/ImageUploader';
 
 export function Form({
     dictionary,
@@ -20,10 +23,7 @@ export function Form({
         create_button: string;
         field_name: string;
     };
-    imageUploaderDictionary: {
-        label: string;
-        hover_title: string;
-    };
+    imageUploaderDictionary: ImageUploaderDictionary;
 }) {
     const [fields, setFields] = useState([] as FieldType[]);
 
