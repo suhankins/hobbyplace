@@ -12,7 +12,7 @@ export default async function App({
     return (
         <div className='flex flex-col gap-4'>
             <h1 className="text-4xl font-bold">{dictionary.creation_form.create_collection}</h1>
-            <Form dictionary={dictionary.creation_form} />
+            <Form dictionary={dictionary.creation_form} imageUploaderDictionary={dictionary.image_uploader} />
         </div>
     );
 }

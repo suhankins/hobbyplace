@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { FileUploader } from 'react-drag-drop-files';
 import { Categories } from '@/components/MVC/Collection/Categories';
 import { FieldType, FieldTypes } from '@/components/MVC/Field/FieldIndex';
 import { Cross } from '@/components/ViewOnly/Icons/Icons';
@@ -9,16 +8,22 @@ import { uploadPhoto } from '@/lib/uploadPhoto';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { MDEInput } from '@/components/ViewOnly/MDEInput/MDEInput';
+import { ImageUploader } from '@/components/ViewOnly/ImageUploader/ImageUploader';
 
 export function Form({
-    dictionary
+    dictionary,
+    imageUploaderDictionary,
 }: {
     dictionary: {
-        collection_name: string,
-        add_field: string,
-        create_button: string,
-        field_name: string
-    }
+        collection_name: string;
+        add_field: string;
+        create_button: string;
+        field_name: string;
+    };
+    imageUploaderDictionary: {
+        label: string;
+        hover_title: string;
+    };
 }) {
     const [fields, setFields] = useState([] as FieldType[]);
 
@@ -63,13 +68,9 @@ export function Form({
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
                 <figure className="p-4 rounded-lg bg-base-200 h-min">
-                    <FileUploader
-                        handleChange={(file: any) =>
-                            (fileUploaderRef.current = file)
-                        }
-                        classes="w-96 !h-96"
-                        maxSize={1}
-                        types={['JPG', 'PNG']}
+                    <ImageUploader
+                        dictionary={imageUploaderDictionary}
+                        fileUploaderRef={fileUploaderRef}
                     />
                 </figure>
                 <div className="flex flex-col gap-2 w-full">
@@ -79,10 +80,14 @@ export function Form({
                         className="input input-ghost hover:border-gray-500 w-full card-title pl-0"
                         {...register('name', { required: true })}
                     />
-                    <MDEInput {...register('description')} setValue={setValue} />
+                    <MDEInput
+                        {...register('description')}
+                        setValue={setValue}
+                    />
                     <select
                         className="select w-full bg-base-200"
-                        {...register('category', { required: true })}>
+                        {...register('category', { required: true })}
+                    >
                         {Categories.map((category) => (
                             <option key={category}>{category}</option>
                         ))}
@@ -93,14 +98,16 @@ export function Form({
                         </label>
                         <ul
                             tabIndex={0}
-                            className="dropdown-content menu w-full p-2 shadow bg-base-300 rounded-box">
+                            className="dropdown-content menu w-full p-2 shadow bg-base-300 rounded-box"
+                        >
                             {FieldTypes.map((value) => (
                                 <li key={value}>
                                     <button
                                         type="button"
                                         onClick={() =>
                                             setFields([...fields, value])
-                                        }>
+                                        }
+                                    >
                                         {value}
                                     </button>
                                 </li>
@@ -110,7 +117,8 @@ export function Form({
                     {fields.map((value, index) => (
                         <div
                             key={index}
-                            className="card flex flex-col lg:flex-row gap-4 bg-base-300">
+                            className="card flex flex-col lg:flex-row gap-4 bg-base-300"
+                        >
                             <div className="card-body">
                                 <h2 className="card-title">{value}</h2>
                                 <div className="flex flex-col">
@@ -120,7 +128,9 @@ export function Form({
                                         {...register(`fields[${index}].type`)}
                                     />
                                     <label className="label">
-                                        <span className="label-text">{dictionary.field_name}</span>
+                                        <span className="label-text">
+                                            {dictionary.field_name}
+                                        </span>
                                     </label>
                                     <input
                                         type="text"
@@ -137,7 +147,8 @@ export function Form({
                                                 (_v, i) => index !== i
                                             )
                                         )
-                                    }>
+                                    }
+                                >
                                     <Cross />
                                 </button>
                             </div>

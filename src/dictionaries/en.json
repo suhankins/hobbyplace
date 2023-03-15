@@ -24,5 +24,9 @@
         "field_name": "Name",
         "collection_name": "Collection name",
         "create_button": "Create"
+    },
+    "image_uploader": {
+        "label": "Drop your image here",
+        "hover_title": "Drop it here!"
     }
 }

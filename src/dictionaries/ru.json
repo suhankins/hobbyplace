@@ -24,5 +24,9 @@
         "field_name": "Название поля",
         "collection_name": "Название коллекции",
         "create_button": "Создать"
+    },
+    "image_uploader": {
+        "label": "Загрузите изображение",
+        "hover_title": "Отпустите изображение здесь!"
     }
 }
