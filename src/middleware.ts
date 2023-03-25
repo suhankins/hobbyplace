@@ -1,39 +1,18 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { i18n } from '@/lib/i18n-config';
+import { localizationMiddleware } from './middleware/localizationMiddleware';
 
-function getLocale(request: NextRequest) {
-    const prefered = request.cookies.get('language');
-    if (prefered === undefined || prefered === null) {
-        return i18n.defaultLocale;
-    }
-    return prefered.value;
-}
-
-export function middleware(request: NextRequest) {
-    const pathname = request.nextUrl.pathname;
-
-    const pathnameIsMissingLocale = i18n.locales.every(
-        (locale) =>
-            !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+export default async function middleware(request: NextRequest) {
+    let response = localizationMiddleware(
+        request,
+        NextResponse.next()
     );
-
-    if (pathnameIsMissingLocale) {
-        const locale = getLocale(request);
-
-        return NextResponse.redirect(
-            new URL(`/${locale}/${pathname}`, request.url)
-        );
-    }
-
-    const chosenLocale = pathname.split("/")[1];
-    
-    const response = NextResponse.next();
-    response.cookies.set("language", chosenLocale);
-
+    // If the localization middleware returns a redirect, we return it
+    if (response.status === 307) return response;
+    // TODO: Auth middleware
     return response;
-}
+};
 
 export const config = {
-    matcher: ['/((?!api|_next/static|NOIMAGE.png|_next/image|favicon.ico).*)'],
+    matcher: ['/((?!_next/static|NOIMAGE.png|_next/image|favicon.ico).*)'],
 };
