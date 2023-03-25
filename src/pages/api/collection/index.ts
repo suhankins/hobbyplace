@@ -12,39 +12,58 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<CollectionClass | string | void>
 ) {
-    const token = await getToken({ req });
-    if (!token) {
-        res.status(401).send();
-        return;
-    }
-
     const { method } = req;
 
     switch (method) {
+        case 'GET':
+            {
+                let query = req.query;
+                if (query.id === undefined) {
+                    res.status(StatusCodes.BAD_REQUEST).send('No id provided');
+                    return;
+                }
+                const collection = await CollectionModel.findById(query.id).populate('owner');
+                if (collection === null) {
+                    res.status(StatusCodes.NOT_FOUND).send(
+                        'Collection not found'
+                    );
+                    return;
+                }
+                res.status(200).json(collection);
+            }
+            break;
         case 'POST':
             // Create collection in DB
-            let query: CollectionClass | string = parseJson(req.body);
-            if (typeof query === 'string') {
-                res.status(StatusCodes.BAD_REQUEST).send(query);
-                return;
-            }
+            {
+                const token = await getToken({ req });
+                if (!token) {
+                    res.status(401).send();
+                    return;
+                }
 
-            try {
-                const user = await UserController.getByEmail(
-                    token.email as string
-                );
-                if (user === null) return;
-                
-                const result = await CollectionModel.create({
-                    name: query.name as string,
-                    description: query.description as string,
-                    category: query.category as string,
-                    fields: query.fields as CollectionField[],
-                    owner: user._id,
-                });
-                res.status(200).json(result);
-            } catch (e) {
-                handleDbError(e, res);
+                let query: CollectionClass | string = parseJson(req.body);
+                if (typeof query === 'string') {
+                    res.status(StatusCodes.BAD_REQUEST).send(query);
+                    return;
+                }
+
+                try {
+                    const user = await UserController.getByEmail(
+                        token.email as string
+                    );
+                    if (user === null) return;
+
+                    const result = await CollectionModel.create({
+                        name: query.name as string,
+                        description: query.description as string,
+                        category: query.category as string,
+                        fields: query.fields as CollectionField[],
+                        owner: user._id,
+                    });
+                    res.status(200).json(result);
+                } catch (e) {
+                    handleDbError(e, res);
+                }
             }
             break;
         default:
